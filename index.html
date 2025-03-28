@@ -13,7 +13,7 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
-                    <div class="logo-icon">NCPI</div>
+                    <img src="logo-ncpi.svg" alt="NCPI Logo" class="logo-img">
                     <div class="logo-text">
                         <h2>NCPI</h2>
                         <p>Núcleo Ciência Pela Infância</p>
@@ -96,6 +96,42 @@
                     </div>
                 </div>
             </header>
+
+            <div class="hierarchy-diagram">
+                <div class="hierarchy-title">
+                    <h2>Estrutura Hierárquica</h2>
+                    <p>Visualização da lógica de implementação</p>
+                </div>
+                <div class="hierarchy-steps">
+                    <div class="hierarchy-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Iniciativas</h3>
+                            <p>Ações estratégicas para alcançar os objetivos</p>
+                        </div>
+                    </div>
+                    <div class="hierarchy-arrow">
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                    <div class="hierarchy-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Resultados</h3>
+                            <p>Efeitos esperados das iniciativas</p>
+                        </div>
+                    </div>
+                    <div class="hierarchy-arrow">
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                    <div class="hierarchy-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Metas</h3>
+                            <p>Objetivos mensuráveis e com prazo definido</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="stats-container">
                 <div class="stat-card">
@@ -227,11 +263,6 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="editMetasConcluidas">Metas Concluídas</label>
-                        <input type="number" id="editMetasConcluidas" name="MetasConcluidas" min="0">
-                    </div>
-                    
-                    <div class="form-group">
                         <label>Resultados</label>
                         <div id="resultadosContainer" class="items-container">
                             <!-- Resultados serão adicionados aqui -->
@@ -249,6 +280,14 @@
                         </div>
                         <div class="add-item-container">
                             <input type="text" id="newMeta" placeholder="Adicionar nova meta">
+                            <select id="newMetaSemestre">
+                                <option value="1º Semestre 2025">1º Semestre 2025</option>
+                                <option value="2º Semestre 2025">2º Semestre 2025</option>
+                                <option value="1º Semestre 2026">1º Semestre 2026</option>
+                                <option value="2º Semestre 2026">2º Semestre 2026</option>
+                                <option value="1º Semestre 2027">1º Semestre 2027</option>
+                                <option value="2º Semestre 2027">2º Semestre 2027</option>
+                            </select>
                             <button type="button" id="addMetaBtn" class="btn">Adicionar</button>
                         </div>
                     </div>
@@ -262,6 +301,55 @@
             <div class="modal-footer">
                 <button class="btn btn-outline" id="cancelEditBtn">Cancelar</button>
                 <button class="btn btn-primary" id="saveEditBtn">Salvar Alterações</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Edição de Meta -->
+    <div id="editMetaModal" class="modal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h2>Editar Status da Meta</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editMetaForm">
+                    <div class="form-group">
+                        <label for="metaText">Meta</label>
+                        <textarea id="metaText" rows="3" readonly></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="metaSemestre">Semestre</label>
+                        <select id="metaSemestre">
+                            <option value="1º Semestre 2025">1º Semestre 2025</option>
+                            <option value="2º Semestre 2025">2º Semestre 2025</option>
+                            <option value="1º Semestre 2026">1º Semestre 2026</option>
+                            <option value="2º Semestre 2026">2º Semestre 2026</option>
+                            <option value="1º Semestre 2027">1º Semestre 2027</option>
+                            <option value="2º Semestre 2027">2º Semestre 2027</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="metaStatus">Status</label>
+                        <select id="metaStatus">
+                            <option value="Não iniciada">Não iniciada</option>
+                            <option value="Em andamento">Em andamento</option>
+                            <option value="Concluída">Concluída</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="metaProgresso">Progresso (%)</label>
+                        <input type="range" id="metaProgresso" min="0" max="100" step="5" value="0">
+                        <div class="range-value"><span id="progressoValue">0</span>%</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelMetaEditBtn">Cancelar</button>
+                <button class="btn btn-primary" id="saveMetaEditBtn">Salvar</button>
             </div>
         </div>
     </div>
