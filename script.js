@@ -24,7 +24,8 @@ let initiatives = [
         "FAROL_NO_TRIMESTRE": "Em Andamento",
         "MetasConcluidas": 4,
         "LÍDER": "Ana Silva",
-        "OBSERVAÇÕES": "Iniciativa prioritária para o primeiro semestre"
+        "OBSERVAÇÕES": "Iniciativa prioritária para o primeiro semestre",
+        "Porta": "Porta para fora"
     },
     {
         "Iniciativas": "Simpósio Internacional",
@@ -50,7 +51,8 @@ let initiatives = [
         "FAROL_NO_TRIMESTRE": "No Prazo",
         "MetasConcluidas": 8,
         "LÍDER": "Carlos Oliveira",
-        "OBSERVAÇÕES": "Preparativos para o evento de outubro em andamento"
+        "OBSERVAÇÕES": "Preparativos para o evento de outubro em andamento",
+        "Porta": "Porta para fora"
     },
     {
         "Iniciativas": "Prêmio",
@@ -74,7 +76,8 @@ let initiatives = [
         "FAROL_NO_TRIMESTRE": "Em Risco",
         "MetasConcluidas": 3,
         "LÍDER": "Mariana Santos",
-        "OBSERVAÇÕES": "Necessário ampliar divulgação para atingir meta de inscrições"
+        "OBSERVAÇÕES": "Necessário ampliar divulgação para atingir meta de inscrições",
+        "Porta": "Porta para fora"
     },
     {
         "Iniciativas": "ELP",
@@ -99,7 +102,8 @@ let initiatives = [
         "FAROL_NO_TRIMESTRE": "No Prazo",
         "MetasConcluidas": 7,
         "LÍDER": "Roberto Almeida",
-        "OBSERVAÇÕES": "Turma atual com excelente engajamento"
+        "OBSERVAÇÕES": "Turma atual com excelente engajamento",
+        "Porta": "Porta para dentro"
     },
     {
         "Iniciativas": "MOBILIZAÇÃO E GESTÃO DE RECURSOS FINANCEIROS",
@@ -118,26 +122,10 @@ let initiatives = [
         "FAROL_NO_TRIMESTRE": "No Prazo",
         "MetasConcluidas": 4,
         "LÍDER": "Fernanda Costa",
-        "OBSERVAÇÕES": "Relatórios financeiros do trimestre entregues no prazo"
+        "OBSERVAÇÕES": "Relatórios financeiros do trimestre entregues no prazo",
+        "Porta": "Porta para dentro"
     }
 ];
-
-// Elementos DOM
-const initiativesList = document.getElementById('initiativesList');
-const searchInput = document.getElementById('searchInput');
-const expandAllBtn = document.getElementById('expandAllBtn');
-const filterBtn = document.getElementById('filterBtn');
-const editModal = document.getElementById('editModal');
-const filterModal = document.getElementById('filterModal');
-const closeModalBtns = document.querySelectorAll('.close-modal');
-const cancelEditBtn = document.getElementById('cancelEditBtn');
-const saveEditBtn = document.getElementById('saveEditBtn');
-const cancelFilterBtn = document.getElementById('cancelFilterBtn');
-const applyFilterBtn = document.getElementById('applyFilterBtn');
-const addResultadoBtn = document.getElementById('addResultadoBtn');
-const addMetaBtn = document.getElementById('addMetaBtn');
-const exportBtn = document.getElementById('exportBtn');
-const exportDataBtn = document.getElementById('exportDataBtn');
 
 // Variáveis globais
 let currentInitiative = null;
@@ -145,24 +133,67 @@ let metasList = [];
 let resultadosList = [];
 let allExpanded = false;
 let activeFilters = ['all'];
+let currentPage = 'all'; // 'all', 'porta-fora', 'porta-dentro'
 
-// Inicialização
+// Elementos DOM
 document.addEventListener('DOMContentLoaded', () => {
-    loadInitiatives();
-    updateStats();
-    setupEventListeners();
-    
+    // Inicializar elementos DOM
+    const sidebar = document.getElementById('sidebar');
+    const toggleSidebarBtn = document.getElementById('toggleSidebar');
+    const mainContent = document.getElementById('mainContent');
+    const initiativesList = document.getElementById('initiativesList');
+    const searchInput = document.getElementById('searchInput');
+    const expandAllBtn = document.getElementById('expandAllBtn');
+    const filterBtn = document.getElementById('filterBtn');
+    const editModal = document.getElementById('editModal');
+    const filterModal = document.getElementById('filterModal');
+    const closeModalBtns = document.querySelectorAll('.close-modal');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const saveEditBtn = document.getElementById('saveEditBtn');
+    const cancelFilterBtn = document.getElementById('cancelFilterBtn');
+    const applyFilterBtn = document.getElementById('applyFilterBtn');
+    const addResultadoBtn = document.getElementById('addResultadoBtn');
+    const addMetaBtn = document.getElementById('addMetaBtn');
+    const exportBtn = document.getElementById('exportBtn');
+    const exportDataBtn = document.getElementById('exportDataBtn');
+    const menuDropdowns = document.querySelectorAll('.menu-dropdown');
+    const submenuItems = document.querySelectorAll('.submenu-item');
+
     // Carregar dados do localStorage se existirem
     const savedData = localStorage.getItem('initiatives');
     if (savedData) {
         initiatives = JSON.parse(savedData);
-        loadInitiatives();
-        updateStats();
     }
-});
 
-// Configurar event listeners
-function setupEventListeners() {
+    // Configurar menu dropdown
+    menuDropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdown.classList.toggle('open');
+        });
+    });
+
+    // Configurar itens do submenu
+    submenuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const page = e.currentTarget.getAttribute('data-page');
+            navigateToPage(page);
+        });
+    });
+
+    // Toggle sidebar
+    toggleSidebarBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        mainContent.classList.toggle('expanded');
+    });
+
+    // Inicializar a página
+    loadInitiatives();
+    updateStats();
+
+    // Configurar event listeners
     searchInput.addEventListener('input', handleSearch);
     expandAllBtn.addEventListener('click', toggleExpandAll);
     filterBtn.addEventListener('click', openFilterModal);
@@ -185,11 +216,54 @@ function setupEventListeners() {
             closeModals();
         }
     });
+});
+
+// Navegar para uma página específica
+function navigateToPage(page) {
+    currentPage = page;
+    
+    // Atualizar título da página
+    const pageTitle = document.getElementById('pageTitle');
+    const contentTitle = document.getElementById('contentTitle');
+    const filterBadge = document.getElementById('filterBadge');
+    
+    switch (page) {
+        case 'porta-fora':
+            pageTitle.textContent = 'Painel da Estratégia - Porta para fora';
+            contentTitle.textContent = 'Iniciativas - Porta para fora';
+            filterBadge.textContent = 'Porta para fora';
+            filterBadge.classList.add('active');
+            break;
+        case 'porta-dentro':
+            pageTitle.textContent = 'Painel da Estratégia - Porta para dentro';
+            contentTitle.textContent = 'Iniciativas - Porta para dentro';
+            filterBadge.textContent = 'Porta para dentro';
+            filterBadge.classList.add('active');
+            break;
+        default:
+            pageTitle.textContent = 'Painel Estratégico';
+            contentTitle.textContent = 'Objetivos Estratégicos';
+            filterBadge.classList.remove('active');
+            break;
+    }
+    
+    // Carregar iniciativas filtradas
+    loadInitiatives();
+    updateStats();
 }
 
 // Carregar iniciativas na lista
 function loadInitiatives(filteredList = null) {
-    const list = filteredList || initiatives;
+    const initiativesList = document.getElementById('initiativesList');
+    let list = filteredList || initiatives;
+    
+    // Filtrar por porta se necessário
+    if (currentPage === 'porta-fora') {
+        list = list.filter(initiative => initiative.Porta === 'Porta para fora');
+    } else if (currentPage === 'porta-dentro') {
+        list = list.filter(initiative => initiative.Porta === 'Porta para dentro');
+    }
+    
     initiativesList.innerHTML = '';
     
     if (list.length === 0) {
@@ -250,6 +324,12 @@ function loadInitiatives(filteredList = null) {
                 </div>
                 ` : ''}
                 
+                ${initiative.Porta ? `
+                <div class="details-meta">
+                    <span>Porta:</span> ${initiative.Porta}
+                </div>
+                ` : ''}
+                
                 ${initiative.OBSERVAÇÕES ? `
                 <div class="details-meta">
                     <span>Observações:</span> ${initiative.OBSERVAÇÕES}
@@ -288,12 +368,21 @@ function loadInitiatives(filteredList = null) {
 
 // Atualizar estatísticas
 function updateStats() {
-    const totalInitiatives = initiatives.length;
+    let filteredInitiatives = [...initiatives];
+    
+    // Filtrar por porta se necessário
+    if (currentPage === 'porta-fora') {
+        filteredInitiatives = filteredInitiatives.filter(initiative => initiative.Porta === 'Porta para fora');
+    } else if (currentPage === 'porta-dentro') {
+        filteredInitiatives = filteredInitiatives.filter(initiative => initiative.Porta === 'Porta para dentro');
+    }
+    
+    const totalInitiatives = filteredInitiatives.length;
     
     let totalGoals = 0;
     let completedGoals = 0;
     
-    initiatives.forEach(initiative => {
+    filteredInitiatives.forEach(initiative => {
         if (initiative.Metas && Array.isArray(initiative.Metas)) {
             totalGoals += initiative.Metas.length;
         }
@@ -346,6 +435,7 @@ function getProgressColor(status) {
 
 // Manipuladores de eventos
 function handleSearch() {
+    const searchInput = document.getElementById('searchInput');
     const searchTerm = searchInput.value.toLowerCase();
     
     if (searchTerm === '') {
@@ -362,6 +452,7 @@ function handleSearch() {
 }
 
 function toggleExpandAll() {
+    const expandAllBtn = document.getElementById('expandAllBtn');
     const detailsElements = document.querySelectorAll('.initiative-details');
     const chevrons = document.querySelectorAll('.initiative-title i');
     
@@ -385,6 +476,7 @@ function toggleExpandAll() {
 }
 
 function openEditModal(initiativeName) {
+    const editModal = document.getElementById('editModal');
     currentInitiative = initiatives.find(i => i.Iniciativas === initiativeName);
     
     if (!currentInitiative) return;
@@ -392,6 +484,7 @@ function openEditModal(initiativeName) {
     // Preencher o formulário
     document.getElementById('editNome').value = currentInitiative.Iniciativas;
     document.getElementById('editDescricao').value = currentInitiative.Descrição || '';
+    document.getElementById('editPorta').value = currentInitiative.Porta || '';
     document.getElementById('editFarol').value = currentInitiative.FAROL_NO_TRIMESTRE || '';
     document.getElementById('editLider').value = currentInitiative.LÍDER || '';
     document.getElementById('editMetasConcluidas').value = currentInitiative.MetasConcluidas || 0;
@@ -439,6 +532,7 @@ function openEditModal(initiativeName) {
         metaRow.innerHTML = `
             <input type="text" value="${meta}" readonly>
             <button type="button" class="remove-item" data-index="${index}">
+                <i class="fas fa-times"></i  class="remove-item" data-index="${index}">
                 <i class="fas fa-times"></i>
             </button>
         `;
@@ -468,6 +562,7 @@ function openEditModal(initiativeName) {
 }
 
 function openFilterModal() {
+    const filterModal = document.getElementById('filterModal');
     // Resetar checkboxes
     const checkboxes = filterModal.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
@@ -478,6 +573,8 @@ function openFilterModal() {
 }
 
 function closeModals() {
+    const editModal = document.getElementById('editModal');
+    const filterModal = document.getElementById('filterModal');
     editModal.style.display = 'none';
     filterModal.style.display = 'none';
 }
@@ -489,6 +586,7 @@ function saveInitiative() {
         ...currentInitiative,
         Iniciativas: document.getElementById('editNome').value,
         Descrição: document.getElementById('editDescricao').value,
+        Porta: document.getElementById('editPorta').value,
         FAROL_NO_TRIMESTRE: document.getElementById('editFarol').value,
         LÍDER: document.getElementById('editLider').value,
         MetasConcluidas: parseInt(document.getElementById('editMetasConcluidas').value) || 0,
@@ -518,6 +616,7 @@ function saveInitiative() {
 }
 
 function applyFilters() {
+    const filterModal = document.getElementById('filterModal');
     const checkboxes = filterModal.querySelectorAll('input[type="checkbox"]:checked');
     activeFilters = Array.from(checkboxes).map(cb => cb.value);
     
