@@ -153,36 +153,17 @@ function calculateProgress(initiative) {
     return totalMetas > 0 ? Math.round(totalProgress / totalMetas) : 0;
 }
 
-// Carregar dados do JSON
-async function loadDataFromJson() {
+// Carregar dados do localStorage ou usar dados iniciais
+function loadDataFromStorage() {
     try {
-        // Tentar carregar do data.json primeiro
-        const response = await fetch('data.json');
-        if (response.ok) {
-            const data = await response.json();
-            // Garantir que os dados estão no formato correto
-            if (data.Iniciativas && Array.isArray(data.Iniciativas)) {
-                // Processar os dados para adicionar campos necessários
-                const processedData = data.Iniciativas.map(initiative => ({
-                    ...initiative,
-                    FAROL_NO_TRIMESTRE: initiative.FAROL_NO_TRIMESTRE || 'Em andamento',
-                    Resultados: initiative.Resultados.map(resultado => ({
-                        ...resultado,
-                        Metas: resultado.Metas.map(meta => ({
-                            texto: meta.Meta || meta.texto,
-                            semestre: meta.semestre || '1º Semestre 2024',
-                            status: meta.status || 'Em andamento',
-                            progresso: meta.progresso || 0,
-                            ...meta
-                        }))
-                    }))
-                }));
-                window.initiatives = processedData;
-                console.log('Dados carregados do data.json:', processedData);
-            }
+        const savedData = localStorage.getItem('initiatives');
+        if (savedData) {
+            window.initiatives = JSON.parse(savedData);
+            console.log('Dados carregados do localStorage:', window.initiatives);
         } else {
-            console.log('Usando dados iniciais padrão - data.json não encontrado');
             window.initiatives = initiatives;
+            localStorage.setItem('initiatives', JSON.stringify(initiatives));
+            console.log('Usando dados iniciais e salvando no localStorage');
         }
     } catch (error) {
         console.error('Erro ao carregar dados:', error);
@@ -369,8 +350,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const toggleSidebarBtn = document.getElementById('toggleSidebar');
     const mainContent = document.getElementById('mainContent');
     
-    // Carregar dados iniciais
-    const dataLoaded = await loadDataFromJson();
+    // Carregar dados do localStorage
+    const dataLoaded = await loadDataFromStorage();
     console.log('Dados carregados:', dataLoaded); // Debug
     
     // Inicializar a navegação e dropdowns
@@ -884,30 +865,8 @@ async function saveInitiativeEdit() {
             window.initiatives[index] = updatedInitiative;
         }
         
-        // Tentar carregar o data.json atual
-        const response = await fetch('data.json');
-        let data = { Iniciativas: window.initiatives };
-        if (response.ok) {
-            data = await response.json();
-            // Atualizar a iniciativa específica no data.json
-            const dataInitiativeIndex = data.Iniciativas.findIndex(i => i.Iniciativas === currentInitiative.Iniciativas);
-            if (dataInitiativeIndex !== -1) {
-                data.Iniciativas[dataInitiativeIndex] = updatedInitiative;
-            }
-        }
-        
-        // Salvar as alterações no arquivo data.json
-        const saveResponse = await fetch('data.json', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data, null, 2)
-        });
-        
-        if (!saveResponse.ok) {
-            throw new Error('Erro ao salvar alterações');
-        }
+        // Salvar no localStorage
+        localStorage.setItem('initiatives', JSON.stringify(window.initiatives));
         
         // Recarregar a interface
         loadInitiatives();
@@ -1079,4 +1038,57 @@ function getPrazo(initiative) {
         });
     });
     return latestSemestre;
+}
+
+// Função para salvar edição de meta
+async function saveMetaEdit() {
+    if (!currentInitiative || currentResultadoIndex === null || currentMetaIndex === null) return;
+    
+    try {
+        const meta = {
+            texto: document.getElementById('metaText').value,
+            semestre: document.getElementById('metaSemestre').value,
+            status: document.getElementById('metaStatus').value,
+            progresso: parseInt(document.getElementById('metaProgresso').value)
+        };
+        
+        // Atualizar a meta no objeto global
+        window.initiatives = window.initiatives.map(initiative => {
+            if (initiative.Iniciativas === currentInitiative.Iniciativas) {
+                const updatedInitiative = { ...initiative };
+                updatedInitiative.Resultados = updatedInitiative.Resultados.map((resultado, rIndex) => {
+                    if (rIndex === currentResultadoIndex) {
+                        const updatedResultado = { ...resultado };
+                        updatedResultado.Metas = updatedResultado.Metas.map((m, mIndex) => {
+                            if (mIndex === currentMetaIndex) {
+                                return meta;
+                            }
+                            return m;
+                        });
+                        return updatedResultado;
+                    }
+                    return resultado;
+                });
+                return updatedInitiative;
+            }
+            return initiative;
+        });
+        
+        // Salvar no localStorage
+        localStorage.setItem('initiatives', JSON.stringify(window.initiatives));
+        
+        // Recarregar a interface
+        loadInitiatives();
+        updateStats();
+        
+        // Fechar o modal
+        closeModals();
+        
+        // Mostrar mensagem de sucesso
+        alert('Meta atualizada com sucesso!');
+        
+    } catch (error) {
+        console.error('Erro ao salvar meta:', error);
+        alert('Erro ao salvar as alterações. Por favor, tente novamente.');
+    }
 }
