@@ -321,9 +321,7 @@ let initiatives = [
                 "progresso": 100
             },
             {
-                "texto": "Fase V com orçamento garantido",
-                "semestre": "2º Semestre 2025",
-                "status": "Concluída",
+                "texto  "Concluída",
                 "progresso": 100
             },
             {
