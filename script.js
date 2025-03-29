@@ -9,20 +9,74 @@ let initiatives = [
             "Públicos prioritários com acesso a informação atualizada e útil sobre implementação de PPPI"
         ],
         "Metas": [
-            "Manter o site do NCPI entre os 3 primeiros colocados no Google em buscas de expressões prioritárias",
-            "Aumentar a diversidade étnico-racial e regional de fontes sugeridas para entrevistas a veículos Tier 1",
-            "Obter espaço editorial fixo para ao menos 2 integrantes do CC, com diversidade étnico-racial, regional e epistemológica",
-            "Aumentar base de inscrições na newsletter em X% ao ano com taxa média de abertura de 20% ao ano",
-            "5 X% de crescimento de menções ao NCPI e seus produtos na imprensa",
-            "X% de crescimento de seguidores no LinkedIn",
-            "12 produtos derivados do CC ao longo dos 3 anos",
-            "10 produtos derivados do Prêmio",
-            "8 produtos derivados do Simpósio",
-            "6 encontros de disseminação com Comunidade NCPI (3 online e 3 presenciais)",
-            "Participação de pesquisadores e/ou distribuição de materiais em ao menos 2 eventos estratégicos por ano"
+            {
+                "texto": "Manter o site do NCPI entre os 3 primeiros colocados no Google em buscas de expressões prioritárias",
+                "semestre": "1º Semestre 2025",
+                "status": "Em andamento",
+                "progresso": 60
+            },
+            {
+                "texto": "Aumentar a diversidade étnico-racial e regional de fontes sugeridas para entrevistas a veículos Tier 1",
+                "semestre": "1º Semestre 2025",
+                "status": "Em andamento",
+                "progresso": 40
+            },
+            {
+                "texto": "Obter espaço editorial fixo para ao menos 2 integrantes do CC, com diversidade étnico-racial, regional e epistemológica",
+                "semestre": "2º Semestre 2025",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "Aumentar base de inscrições na newsletter em X% ao ano com taxa média de abertura de 20% ao ano",
+                "semestre": "1º Semestre 2026",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "5 X% de crescimento de menções ao NCPI e seus produtos na imprensa",
+                "semestre": "2º Semestre 2025",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "X% de crescimento de seguidores no LinkedIn",
+                "semestre": "1º Semestre 2026",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "12 produtos derivados do CC ao longo dos 3 anos",
+                "semestre": "2º Semestre 2026",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "10 produtos derivados do Prêmio",
+                "semestre": "1º Semestre 2027",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "8 produtos derivados do Simpósio",
+                "semestre": "2º Semestre 2026",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "6 encontros de disseminação com Comunidade NCPI (3 online e 3 presenciais)",
+                "semestre": "1º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Participação de pesquisadores e/ou distribuição de materiais em ao menos 2 eventos estratégicos por ano",
+                "semestre": "2º Semestre 2025",
+                "status": "Concluída",
+                "progresso": 100
+            }
         ],
         "FAROL_NO_TRIMESTRE": "Em Andamento",
-        "MetasConcluidas": 4,
         "LÍDER": "Ana Silva",
         "OBSERVAÇÕES": "Iniciativa prioritária para o primeiro semestre",
         "Porta": "Porta para fora"
@@ -36,20 +90,74 @@ let initiatives = [
             "Perfil de palestrantes e participantes orientado pelas diversidades regional e étnico-racial brasileiras"
         ],
         "Metas": [
-            "80% dos Participantes afirmam que participar do Simpósio ampliou seus conhecimentos sobre Pi e suas conexões com atores do campo",
-            "1 encontro da Comunidade NCPI por edição do Simpósio",
-            "Ao menos 5 side events por edição",
-            "Participação de 3 a 5 palestrantes internacionais, com 50% deles com origem no Sul Global",
-            "Ao menos 1 estudo científico inédito lançado no Simpósio",
-            "100% dos estados brasileiros com participantes presencial e/ou on-line",
-            "30% do público advindo do N ou NE, sendo pretos, pardos e indígenas",
-            "300 participantes presenciais e ao menos 1000 online",
-            "50% de participantes advindos da academia, OSC e imprensa",
-            "50% de gestores públicos de alto e médio escalão + nível de rua",
-            "40% dos palestrantes entre pessoas pretas, pardas e indígenas"
+            {
+                "texto": "80% dos Participantes afirmam que participar do Simpósio ampliou seus conhecimentos sobre Pi e suas conexões com atores do campo",
+                "semestre": "2º Semestre 2025",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "1 encontro da Comunidade NCPI por edição do Simpósio",
+                "semestre": "1º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Ao menos 5 side events por edição",
+                "semestre": "2º Semestre 2025",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Participação de 3 a 5 palestrantes internacionais, com 50% deles com origem no Sul Global",
+                "semestre": "1º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Ao menos 1 estudo científico inédito lançado no Simpósio",
+                "semestre": "2º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "100% dos estados brasileiros com participantes presencial e/ou on-line",
+                "semestre": "1º Semestre 2027",
+                "status": "Em andamento",
+                "progresso": 75
+            },
+            {
+                "texto": "30% do público advindo do N ou NE, sendo pretos, pardos e indígenas",
+                "semestre": "2º Semestre 2026",
+                "status": "Em andamento",
+                "progresso": 50
+            },
+            {
+                "texto": "300 participantes presenciais e ao menos 1000 online",
+                "semestre": "1º Semestre 2027",
+                "status": "Em andamento",
+                "progresso": 30
+            },
+            {
+                "texto": "50% de participantes advindos da academia, OSC e imprensa",
+                "semestre": "2º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "50% de gestores públicos de alto e médio escalão + nível de rua",
+                "semestre": "1º Semestre 2027",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "40% dos palestrantes entre pessoas pretas, pardas e indígenas",
+                "semestre": "2º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            }
         ],
         "FAROL_NO_TRIMESTRE": "No Prazo",
-        "MetasConcluidas": 8,
         "LÍDER": "Carlos Oliveira",
         "OBSERVAÇÕES": "Preparativos para o evento de outubro em andamento",
         "Porta": "Porta para fora"
@@ -63,18 +171,62 @@ let initiatives = [
             "Pesquisas premiadas articuladas com a gestão pública e inserção na imprensa"
         ],
         "Metas": [
-            "50% de participantes do N e NE em todas as etapas de cada edição",
-            "50% de participantes pretos, pardos e indígenas em todas as etapas",
-            "Pesquisas distribuídas pelas diferentes área de concentração",
-            "Assegurar ao menos 5 parceiros divulgadores a cada edição: FNP, RNPI, CNM, CPAPI, etc.",
-            "50% da comissão julgadora do Prêmio formada por preto, pardos e indígenas",
-            "1 formação em comunicação e influência para todos os finalistas",
-            "1 formação em aplicação de evidências às PP para os premiados",
-            "50 gestores públicos e de OSC presentes na cerimônia de premiação",
-            "Ao menos 50% das pesquisas inscritas voltadas às crianças pretas, pardas e indígenas"
+            {
+                "texto": "50% de participantes do N e NE em todas as etapas de cada edição",
+                "semestre": "1º Semestre 2025",
+                "status": "Em andamento",
+                "progresso": 35
+            },
+            {
+                "texto": "50% de participantes pretos, pardos e indígenas em todas as etapas",
+                "semestre": "2º Semestre 2025",
+                "status": "Em andamento",
+                "progresso": 40
+            },
+            {
+                "texto": "Pesquisas distribuídas pelas diferentes área de concentração",
+                "semestre": "1º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Assegurar ao menos 5 parceiros divulgadores a cada edição: FNP, RNPI, CNM, CPAPI, etc.",
+                "semestre": "2º Semestre 2025",
+                "status": "Em andamento",
+                "progresso": 60
+            },
+            {
+                "texto": "50% da comissão julgadora do Prêmio formada por preto, pardos e indígenas",
+                "semestre": "1º Semestre 2026",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "1 formação em comunicação e influência para todos os finalistas",
+                "semestre": "2º Semestre 2026",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "1 formação em aplicação de evidências às PP para os premiados",
+                "semestre": "1º Semestre 2027",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "50 gestores públicos e de OSC presentes na cerimônia de premiação",
+                "semestre": "2º Semestre 2026",
+                "status": "Não iniciada",
+                "progresso": 0
+            },
+            {
+                "texto": "Ao menos 50% das pesquisas inscritas voltadas às crianças pretas, pardas e indígenas",
+                "semestre": "1º Semestre 2027",
+                "status": "Concluída",
+                "progresso": 100
+            }
         ],
         "FAROL_NO_TRIMESTRE": "Em Risco",
-        "MetasConcluidas": 3,
         "LÍDER": "Mariana Santos",
         "OBSERVAÇÕES": "Necessário ampliar divulgação para atingir meta de inscrições",
         "Porta": "Porta para fora"
@@ -88,19 +240,68 @@ let initiatives = [
             "Participantes e docentes pretos, pardos e indígenas presentes de modo significativo no ELP"
         ],
         "Metas": [
-            "80% dos participantes avaliam seus argumentos e evidências sobre PI como excelente/bom",
-            "80% dos participantes avaliam suas habilidades de mobilizar agentes a favor da PI como excelente/bom",
-            "80% dos participantes avaliam seu conhecimento para implementar políticas públicas de PI como excelente/bom",
-            "NPS do Programa acima de 90%",
-            "90% dos plano de ação apresentados com recortes das múltiplas infâncias brasileiras",
-            "Ao menos 70% dos planos de ação em algum estágio de implementação",
-            "Mínimo de 40% dos participantes pretos, pardos e indígenas",
-            "Assegurar ao menos 15% de participantes para as 5 regiões brasileiras",
-            "40% de diversidade nos professores de todas as etapas",
-            "Ao menos 50% dos participantes ocupam posições de liderança na gestão pública"
+            {
+                "texto": "80% dos participantes avaliam seus argumentos e evidências sobre PI como excelente/bom",
+                "semestre": "1º Semestre 2025",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "80% dos participantes avaliam suas habilidades de mobilizar agentes a favor da PI como excelente/bom",
+                "semestre": "2º Semestre 2025",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "80% dos participantes avaliam seu conhecimento para implementar políticas públicas de PI como excelente/bom",
+                "semestre": "1º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "NPS do Programa acima de 90%",
+                "semestre": "2º Semestre 2025",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "90% dos plano de ação apresentados com recortes das múltiplas infâncias brasileiras",
+                "semestre": "1º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Ao menos 70% dos planos de ação em algum estágio de implementação",
+                "semestre": "2º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Mínimo de 40% dos participantes pretos, pardos e indígenas",
+                "semestre": "1º Semestre 2027",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Assegurar ao menos 15% de participantes para as 5 regiões brasileiras",
+                "semestre": "2º Semestre 2026",
+                "status": "Em andamento",
+                "progresso": 80
+            },
+            {
+                "texto": "40% de diversidade nos professores de todas as etapas",
+                "semestre": "1º Semestre 2027",
+                "status": "Em andamento",
+                "progresso": 65
+            },
+            {
+                "texto": "Ao menos 50% dos participantes ocupam posições de liderança na gestão pública",
+                "semestre": "2º Semestre 2026",
+                "status": "Em andamento",
+                "progresso": 75
+            }
         ],
         "FAROL_NO_TRIMESTRE": "No Prazo",
-        "MetasConcluidas": 7,
         "LÍDER": "Roberto Almeida",
         "OBSERVAÇÕES": "Turma atual com excelente engajamento",
         "Porta": "Porta para dentro"
@@ -113,14 +314,44 @@ let initiatives = [
             "Gestão financeira precisa, eficiente e transparente assegurada ao longo da Fase V"
         ],
         "Metas": [
-            "100% dos grants previstos, aprovados com os parceiros",
-            "Prospecção de ao menos 1 parceiro para a fase 6.",
-            "100% dos relatórios financeiros aprovados pelos parceiros",
-            "100% dos compromissos financeiros executados",
-            "Acompanhamento mensal do orçamento realizado pela equipe"
+            {
+                "texto": "100% dos grants previstos, aprovados com os parceiros",
+                "semestre": "1º Semestre 2025",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Fase V com orçamento garantido",
+                "semestre": "2º Semestre 2025",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "Prospecção de ao menos 1 parceiro para a fase 6.",
+                "semestre": "2º Semestre 2025",
+                "status": "Em andamento",
+                "progresso": 70
+            },
+            {
+                "texto": "100% dos relatórios financeiros aprovados pelos parceiros",
+                "semestre": "1º Semestre 2026",
+                "status": "Concluída",
+                "progresso": 100
+            },
+            {
+                "texto": "100% dos compromissos financeiros executados",
+                "semestre": "2º Semestre 2026",
+                "status": "Em andamento",
+                "progresso": 85
+            },
+            {
+                "texto": "Acompanhamento mensal do orçamento realizado pela equipe",
+                "semestre": "1º Semestre 2025",
+                "status": "Concluída",
+                "progresso": 100
+            }
         ],
         "FAROL_NO_TRIMESTRE": "No Prazo",
-        "MetasConcluidas": 4,
         "LÍDER": "Fernanda Costa",
         "OBSERVAÇÕES": "Relatórios financeiros do trimestre entregues no prazo",
         "Porta": "Porta para dentro"
@@ -129,6 +360,7 @@ let initiatives = [
 
 // Variáveis globais
 let currentInitiative = null;
+let currentMetaIndex = null;
 let metasList = [];
 let resultadosList = [];
 let allExpanded = false;
@@ -146,10 +378,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const expandAllBtn = document.getElementById('expandAllBtn');
     const filterBtn = document.getElementById('filterBtn');
     const editModal = document.getElementById('editModal');
+    const editMetaModal = document.getElementById('editMetaModal');
     const filterModal = document.getElementById('filterModal');
     const closeModalBtns = document.querySelectorAll('.close-modal');
     const cancelEditBtn = document.getElementById('cancelEditBtn');
     const saveEditBtn = document.getElementById('saveEditBtn');
+    const cancelMetaEditBtn = document.getElementById('cancelMetaEditBtn');
+    const saveMetaEditBtn = document.getElementById('saveMetaEditBtn');
     const cancelFilterBtn = document.getElementById('cancelFilterBtn');
     const applyFilterBtn = document.getElementById('applyFilterBtn');
     const addResultadoBtn = document.getElementById('addResultadoBtn');
@@ -158,6 +393,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const exportDataBtn = document.getElementById('exportDataBtn');
     const menuDropdowns = document.querySelectorAll('.menu-dropdown');
     const submenuItems = document.querySelectorAll('.submenu-item');
+    const metaProgressoInput = document.getElementById('metaProgresso');
+    const progressoValueSpan = document.getElementById('progressoValue');
 
     // Carregar dados do localStorage se existirem
     const savedData = localStorage.getItem('initiatives');
@@ -200,6 +437,8 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModalBtns.forEach(btn => btn.addEventListener('click', closeModals));
     cancelEditBtn.addEventListener('click', closeModals);
     saveEditBtn.addEventListener('click', saveInitiative);
+    cancelMetaEditBtn.addEventListener('click', closeModals);
+    saveMetaEditBtn.addEventListener('click', saveMetaEdit);
     cancelFilterBtn.addEventListener('click', closeModals);
     applyFilterBtn.addEventListener('click', applyFilters);
     addResultadoBtn.addEventListener('click', addResultado);
@@ -207,12 +446,22 @@ document.addEventListener('DOMContentLoaded', () => {
     exportBtn.addEventListener('click', exportData);
     exportDataBtn.addEventListener('click', exportData);
     
+    // Atualizar valor do progresso
+    if (metaProgressoInput) {
+        metaProgressoInput.addEventListener('input', () => {
+            progressoValueSpan.textContent = metaProgressoInput.value;
+        });
+    }
+    
     // Fechar modais ao clicar fora
     window.addEventListener('click', (e) => {
         if (e.target === editModal) {
             closeModals();
         }
         if (e.target === filterModal) {
+            closeModals();
+        }
+        if (e.target === editMetaModal) {
             closeModals();
         }
     });
@@ -259,473 +508,3 @@ function loadInitiatives(filteredList = null) {
     
     // Filtrar por porta se necessário
     if (currentPage === 'porta-fora') {
-        list = list.filter(initiative => initiative.Porta === 'Porta para fora');
-    } else if (currentPage === 'porta-dentro') {
-        list = list.filter(initiative => initiative.Porta === 'Porta para dentro');
-    }
-    
-    initiativesList.innerHTML = '';
-    
-    if (list.length === 0) {
-        initiativesList.innerHTML = '<div class="empty-state">Nenhuma iniciativa encontrada.</div>';
-        return;
-    }
-    
-    list.forEach(initiative => {
-        const totalMetas = initiative.Metas ? initiative.Metas.length : 0;
-        const completedMetas = initiative.MetasConcluidas || 0;
-        const progressPercentage = totalMetas > 0 ? (completedMetas / totalMetas) * 100 : 0;
-        
-        const initiativeElement = document.createElement('div');
-        initiativeElement.className = 'initiative-item';
-        initiativeElement.innerHTML = `
-            <div class="initiative-header">
-                <div class="initiative-title">
-                    <i class="fas fa-chevron-right"></i>
-                    <h3>${initiative.Iniciativas}</h3>
-                </div>
-                <div class="initiative-actions">
-                    <div class="initiative-progress">
-                        <span class="progress-text">${completedMetas}/${totalMetas} metas</span>
-                        <div class="progress-bar">
-                            <div class="progress-value" style="width: ${progressPercentage}%; background-color: ${getProgressColor(initiative.FAROL_NO_TRIMESTRE)}"></div>
-                        </div>
-                    </div>
-                    <span class="status-badge ${getStatusClass(initiative.FAROL_NO_TRIMESTRE)}">${initiative.FAROL_NO_TRIMESTRE || 'Não definido'}</span>
-                    <button class="edit-btn" data-initiative="${initiative.Iniciativas}">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="initiative-details">
-                <p class="initiative-description">${initiative.Descrição || ''}</p>
-                
-                ${initiative.Resultados && initiative.Resultados.length > 0 ? `
-                <div class="details-section">
-                    <h4>Resultados Esperados:</h4>
-                    <ul class="details-list">
-                        ${initiative.Resultados.map(resultado => `<li>${resultado}</li>`).join('')}
-                    </ul>
-                </div>
-                ` : ''}
-                
-                ${initiative.Metas && initiative.Metas.length > 0 ? `
-                <div class="details-section">
-                    <h4>Metas:</h4>
-                    <ul class="details-list">
-                        ${initiative.Metas.map(meta => `<li>${meta}</li>`).join('')}
-                    </ul>
-                </div>
-                ` : ''}
-                
-                ${initiative.LÍDER ? `
-                <div class="details-meta">
-                    <span>Líder:</span> ${initiative.LÍDER}
-                </div>
-                ` : ''}
-                
-                ${initiative.Porta ? `
-                <div class="details-meta">
-                    <span>Porta:</span> ${initiative.Porta}
-                </div>
-                ` : ''}
-                
-                ${initiative.OBSERVAÇÕES ? `
-                <div class="details-meta">
-                    <span>Observações:</span> ${initiative.OBSERVAÇÕES}
-                </div>
-                ` : ''}
-            </div>
-        `;
-        
-        initiativesList.appendChild(initiativeElement);
-        
-        // Adicionar event listeners
-        const header = initiativeElement.querySelector('.initiative-header');
-        header.addEventListener('click', () => {
-            const details = initiativeElement.querySelector('.initiative-details');
-            const chevron = initiativeElement.querySelector('.initiative-title i');
-            
-            details.classList.toggle('active');
-            
-            if (details.classList.contains('active')) {
-                chevron.classList.remove('fa-chevron-right');
-                chevron.classList.add('fa-chevron-down');
-            } else {
-                chevron.classList.remove('fa-chevron-down');
-                chevron.classList.add('fa-chevron-right');
-            }
-        });
-        
-        const editBtn = initiativeElement.querySelector('.edit-btn');
-        editBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const initiativeName = e.currentTarget.getAttribute('data-initiative');
-            openEditModal(initiativeName);
-        });
-    });
-}
-
-// Atualizar estatísticas
-function updateStats() {
-    let filteredInitiatives = [...initiatives];
-    
-    // Filtrar por porta se necessário
-    if (currentPage === 'porta-fora') {
-        filteredInitiatives = filteredInitiatives.filter(initiative => initiative.Porta === 'Porta para fora');
-    } else if (currentPage === 'porta-dentro') {
-        filteredInitiatives = filteredInitiatives.filter(initiative => initiative.Porta === 'Porta para dentro');
-    }
-    
-    const totalInitiatives = filteredInitiatives.length;
-    
-    let totalGoals = 0;
-    let completedGoals = 0;
-    
-    filteredInitiatives.forEach(initiative => {
-        if (initiative.Metas && Array.isArray(initiative.Metas)) {
-            totalGoals += initiative.Metas.length;
-        }
-        
-        if (initiative.MetasConcluidas) {
-            completedGoals += initiative.MetasConcluidas;
-        }
-    });
-    
-    const completionPercentage = totalGoals > 0 
-        ? Math.round((completedGoals / totalGoals) * 100) 
-        : 0;
-    
-    document.getElementById('totalInitiatives').textContent = totalInitiatives;
-    document.getElementById('totalGoals').textContent = totalGoals;
-    document.getElementById('completedGoals').textContent = completedGoals;
-    document.getElementById('completionPercentage').textContent = `${completionPercentage}%`;
-}
-
-// Funções auxiliares
-function getStatusClass(status) {
-    if (!status) return '';
-    
-    switch (status.toLowerCase()) {
-        case 'em andamento':
-            return 'em-andamento';
-        case 'no prazo':
-            return 'no-prazo';
-        case 'em risco':
-            return 'em-risco';
-        default:
-            return '';
-    }
-}
-
-function getProgressColor(status) {
-    if (!status) return '#9ca3af';
-    
-    switch (status.toLowerCase()) {
-        case 'em andamento':
-            return '#f59e0b';
-        case 'no prazo':
-            return '#10b981';
-        case 'em risco':
-            return '#ef4444';
-        default:
-            return '#9ca3af';
-    }
-}
-
-// Manipuladores de eventos
-function handleSearch() {
-    const searchInput = document.getElementById('searchInput');
-    const searchTerm = searchInput.value.toLowerCase();
-    
-    if (searchTerm === '') {
-        loadInitiatives();
-        return;
-    }
-    
-    const filteredInitiatives = initiatives.filter(initiative => 
-        initiative.Iniciativas.toLowerCase().includes(searchTerm) ||
-        (initiative.Descrição && initiative.Descrição.toLowerCase().includes(searchTerm))
-    );
-    
-    loadInitiatives(filteredInitiatives);
-}
-
-function toggleExpandAll() {
-    const expandAllBtn = document.getElementById('expandAllBtn');
-    const detailsElements = document.querySelectorAll('.initiative-details');
-    const chevrons = document.querySelectorAll('.initiative-title i');
-    
-    allExpanded = !allExpanded;
-    
-    if (allExpanded) {
-        expandAllBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Recolher Todos';
-        detailsElements.forEach(el => el.classList.add('active'));
-        chevrons.forEach(icon => {
-            icon.classList.remove('fa-chevron-right');
-            icon.classList.add('fa-chevron-down');
-        });
-    } else {
-        expandAllBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Expandir Todos';
-        detailsElements.forEach(el => el.classList.remove('active'));
-        chevrons.forEach(icon => {
-            icon.classList.remove('fa-chevron-down');
-            icon.classList.add('fa-chevron-right');
-        });
-    }
-}
-
-function openEditModal(initiativeName) {
-    const editModal = document.getElementById('editModal');
-    currentInitiative = initiatives.find(i => i.Iniciativas === initiativeName);
-    
-    if (!currentInitiative) return;
-    
-    // Preencher o formulário
-    document.getElementById('editNome').value = currentInitiative.Iniciativas;
-    document.getElementById('editDescricao').value = currentInitiative.Descrição || '';
-    document.getElementById('editPorta').value = currentInitiative.Porta || '';
-    document.getElementById('editFarol').value = currentInitiative.FAROL_NO_TRIMESTRE || '';
-    document.getElementById('editLider').value = currentInitiative.LÍDER || '';
-    document.getElementById('editMetasConcluidas').value = currentInitiative.MetasConcluidas || 0;
-    document.getElementById('editObservacoes').value = currentInitiative.OBSERVAÇÕES || '';
-    
-    // Configurar o máximo de metas concluídas
-    const maxMetas = currentInitiative.Metas ? currentInitiative.Metas.length : 0;
-    document.getElementById('editMetasConcluidas').max = maxMetas;
-    
-    // Preencher resultados
-    resultadosList = [...(currentInitiative.Resultados || [])];
-    const resultadosContainer = document.getElementById('resultadosContainer');
-    resultadosContainer.innerHTML = '';
-    
-    resultadosList.forEach((resultado, index) => {
-        const resultadoRow = document.createElement('div');
-        resultadoRow.className = 'item-row';
-        resultadoRow.innerHTML = `
-            <input type="text" value="${resultado}" readonly>
-            <button type="button" class="remove-item" data-index="${index}">
-                <i class="fas fa-times"></i>
-            </button>
-        `;
-        resultadosContainer.appendChild(resultadoRow);
-    });
-    
-    // Adicionar event listeners para remover resultados
-    document.querySelectorAll('#resultadosContainer .remove-item').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const index = parseInt(e.currentTarget.getAttribute('data-index'));
-            resultadosList.splice(index, 1);
-            e.currentTarget.parentElement.remove();
-            updateRemoveButtons('#resultadosContainer');
-        });
-    });
-    
-    // Preencher metas
-    metasList = [...(currentInitiative.Metas || [])];
-    const metasContainer = document.getElementById('metasContainer');
-    metasContainer.innerHTML = '';
-    
-    metasList.forEach((meta, index) => {
-        const metaRow = document.createElement('div');
-        metaRow.className = 'item-row';
-        metaRow.innerHTML = `
-            <input type="text" value="${meta}" readonly>
-            <button type="button" class="remove-item" data-index="${index}">
-                <i class="fas fa-times"></i  class="remove-item" data-index="${index}">
-                <i class="fas fa-times"></i>
-            </button>
-        `;
-        metasContainer.appendChild(metaRow);
-    });
-    
-    // Adicionar event listeners para remover metas
-    document.querySelectorAll('#metasContainer .remove-item').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const index = parseInt(e.currentTarget.getAttribute('data-index'));
-            metasList.splice(index, 1);
-            e.currentTarget.parentElement.remove();
-            updateRemoveButtons('#metasContainer');
-            
-            // Atualizar o máximo de metas concluídas
-            document.getElementById('editMetasConcluidas').max = metasList.length;
-            
-            // Ajustar o valor atual se necessário
-            const currentValue = parseInt(document.getElementById('editMetasConcluidas').value);
-            if (currentValue > metasList.length) {
-                document.getElementById('editMetasConcluidas').value = metasList.length;
-            }
-        });
-    });
-    
-    editModal.style.display = 'block';
-}
-
-function openFilterModal() {
-    const filterModal = document.getElementById('filterModal');
-    // Resetar checkboxes
-    const checkboxes = filterModal.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = activeFilters.includes(checkbox.value);
-    });
-    
-    filterModal.style.display = 'block';
-}
-
-function closeModals() {
-    const editModal = document.getElementById('editModal');
-    const filterModal = document.getElementById('filterModal');
-    editModal.style.display = 'none';
-    filterModal.style.display = 'none';
-}
-
-function saveInitiative() {
-    if (!currentInitiative) return;
-    
-    const updatedInitiative = {
-        ...currentInitiative,
-        Iniciativas: document.getElementById('editNome').value,
-        Descrição: document.getElementById('editDescricao').value,
-        Porta: document.getElementById('editPorta').value,
-        FAROL_NO_TRIMESTRE: document.getElementById('editFarol').value,
-        LÍDER: document.getElementById('editLider').value,
-        MetasConcluidas: parseInt(document.getElementById('editMetasConcluidas').value) || 0,
-        OBSERVAÇÕES: document.getElementById('editObservacoes').value,
-        Resultados: [...resultadosList],
-        Metas: [...metasList]
-    };
-    
-    // Atualizar a iniciativa na lista
-    const index = initiatives.findIndex(i => i.Iniciativas === currentInitiative.Iniciativas);
-    if (index !== -1) {
-        initiatives[index] = updatedInitiative;
-    }
-    
-    // Salvar no localStorage
-    localStorage.setItem('initiatives', JSON.stringify(initiatives));
-    
-    // Recarregar a lista e atualizar estatísticas
-    loadInitiatives();
-    updateStats();
-    
-    // Fechar o modal
-    closeModals();
-    
-    // Mostrar mensagem de sucesso
-    alert('Iniciativa atualizada com sucesso!');
-}
-
-function applyFilters() {
-    const filterModal = document.getElementById('filterModal');
-    const checkboxes = filterModal.querySelectorAll('input[type="checkbox"]:checked');
-    activeFilters = Array.from(checkboxes).map(cb => cb.value);
-    
-    // Se "all" estiver selecionado, mostrar todas as iniciativas
-    if (activeFilters.includes('all')) {
-        loadInitiatives();
-    } else {
-        // Filtrar por status
-        const filteredInitiatives = initiatives.filter(initiative => 
-            activeFilters.includes(initiative.FAROL_NO_TRIMESTRE)
-        );
-        loadInitiatives(filteredInitiatives);
-    }
-    
-    closeModals();
-}
-
-function addResultado() {
-    const newResultadoInput = document.getElementById('newResultado');
-    const newResultado = newResultadoInput.value.trim();
-    
-    if (newResultado === '') return;
-    
-    resultadosList.push(newResultado);
-    
-    const resultadosContainer = document.getElementById('resultadosContainer');
-    const resultadoRow = document.createElement('div');
-    resultadoRow.className = 'item-row';
-    resultadoRow.innerHTML = `
-        <input type="text" value="${newResultado}" readonly>
-        <button type="button" class="remove-item" data-index="${resultadosList.length - 1}">
-            <i class="fas fa-times"></i>
-        </button>
-    `;
-    resultadosContainer.appendChild(resultadoRow);
-    
-    // Adicionar event listener para remover
-    resultadoRow.querySelector('.remove-item').addEventListener('click', (e) => {
-        const index = parseInt(e.currentTarget.getAttribute('data-index'));
-        resultadosList.splice(index, 1);
-        e.currentTarget.parentElement.remove();
-        updateRemoveButtons('#resultadosContainer');
-    });
-    
-    newResultadoInput.value = '';
-    updateRemoveButtons('#resultadosContainer');
-}
-
-function addMeta() {
-    const newMetaInput = document.getElementById('newMeta');
-    const newMeta = newMetaInput.value.trim();
-    
-    if (newMeta === '') return;
-    
-    metasList.push(newMeta);
-    
-    const metasContainer = document.getElementById('metasContainer');
-    const metaRow = document.createElement('div');
-    metaRow.className = 'item-row';
-    metaRow.innerHTML = `
-        <input type="text" value="${newMeta}" readonly>
-        <button type="button" class="remove-item" data-index="${metasList.length - 1}">
-            <i class="fas fa-times"></i>
-        </button>
-    `;
-    metasContainer.appendChild(metaRow);
-    
-    // Adicionar event listener para remover
-    metaRow.querySelector('.remove-item').addEventListener('click', (e) => {
-        const index = parseInt(e.currentTarget.getAttribute('data-index'));
-        metasList.splice(index, 1);
-        e.currentTarget.parentElement.remove();
-        updateRemoveButtons('#metasContainer');
-        
-        // Atualizar o máximo de metas concluídas
-        document.getElementById('editMetasConcluidas').max = metasList.length;
-        
-        // Ajustar o valor atual se necessário
-        const currentValue = parseInt(document.getElementById('editMetasConcluidas').value);
-        if (currentValue > metasList.length) {
-            document.getElementById('editMetasConcluidas').value = metasList.length;
-        }
-    });
-    
-    newMetaInput.value = '';
-    updateRemoveButtons('#metasContainer');
-    
-    // Atualizar o máximo de metas concluídas
-    document.getElementById('editMetasConcluidas').max = metasList.length;
-}
-
-function updateRemoveButtons(containerId) {
-    const container = document.querySelector(containerId);
-    const removeButtons = container.querySelectorAll('.remove-item');
-    
-    removeButtons.forEach((btn, index) => {
-        btn.setAttribute('data-index', index);
-    });
-}
-
-function exportData() {
-    // Criar um arquivo JSON para download
-    const dataStr = JSON.stringify(initiatives, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-    
-    const exportFileDefaultName = 'iniciativas.json';
-    
-    const linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', exportFileDefaultName);
-    linkElement.click();
-}
