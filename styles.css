@@ -1,573 +1,917 @@
-// Variáveis globais
-let currentInitiative = null;
-let currentMetaIndex = null;
-let metasList = [];
-let resultadosList = [];
-let allExpanded = false;
-let activeStatusFilters = ['all'];
-let activeSemesterFilters = ['all'];
-let currentPage = 'todas'; // 'todas', 'porta-fora', 'porta-dentro'
-
-// Elementos DOM
-document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar elementos DOM
-    const sidebar = document.getElementById('sidebar');
-    const toggleSidebarBtn = document.getElementById('toggleSidebar');
-    const mainContent = document.getElementById('mainContent');
-    const initiativesList = document.getElementById('initiativesList');
-    const searchInput = document.getElementById('searchInput');
-    const expandAllBtn = document.getElementById('expandAllBtn');
-    const filterBtn = document.getElementById('filterBtn');
-    const editModal = document.getElementById('editModal');
-    const editMetaModal = document.getElementById('editMetaModal');
-    const filterModal = document.getElementById('filterModal');
-    const closeModalBtns = document.querySelectorAll('.close-modal');
-    const cancelEditBtn = document.getElementById('cancelEditBtn');
-    const saveEditBtn = document.getElementById('saveEditBtn');
-    const cancelMetaEditBtn = document.getElementById('cancelMetaEditBtn');
-    const saveMetaEditBtn = document.getElementById('saveMetaEditBtn');
-    const cancelFilterBtn = document.getElementById('cancelFilterBtn');
-    const applyFilterBtn = document.getElementById('applyFilterBtn');
-    const addResultadoBtn = document.getElementById('addResultadoBtn');
-    const addMetaBtn = document.getElementById('addMetaBtn');
-    const exportBtn = document.getElementById('exportBtn');
-    const navItems = document.querySelectorAll('.nav-item');
-    const metaProgressoInput = document.getElementById('metaProgresso');
-    const progressoValueSpan = document.getElementById('progressoValue');
-
-    // Carregar dados do localStorage se existirem
-    const savedData = localStorage.getItem('initiatives');
-    if (savedData) {
-        initiatives = JSON.parse(savedData);
-    }
-
-    // Configurar navegação
-    navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            const page = item.getAttribute('data-page');
-            navigateToPage(page);
-            
-            // Atualizar classe ativa
-            navItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-        });
-    });
-
-    // Toggle sidebar
-    toggleSidebarBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('collapsed');
-        mainContent.classList.toggle('expanded');
-    });
-
-    // Inicializar a página
-    loadInitiatives();
-    updateStats();
-
-    // Configurar event listeners
-    searchInput.addEventListener('input', handleSearch);
-    expandAllBtn.addEventListener('click', toggleExpandAll);
-    filterBtn.addEventListener('click', openFilterModal);
-    closeModalBtns.forEach(btn => btn.addEventListener('click', closeModals));
-    cancelEditBtn.addEventListener('click', closeModals);
-    saveEditBtn.addEventListener('click', saveInitiative);
-    cancelMetaEditBtn.addEventListener('click', closeModals);
-    saveMetaEditBtn.addEventListener('click', saveMetaEdit);
-    cancelFilterBtn.addEventListener('click', closeModals);
-    applyFilterBtn.addEventListener('click', applyFilters);
-    addResultadoBtn.addEventListener('click', addResultado);
-    addMetaBtn.addEventListener('click', addMeta);
-    exportBtn.addEventListener('click', exportData);
-    
-    // Atualizar valor do progresso
-    if (metaProgressoInput) {
-        metaProgressoInput.addEventListener('input', () => {
-            progressoValueSpan.textContent = metaProgressoInput.value;
-        });
-    }
-    
-    // Fechar modais ao clicar fora
-    window.addEventListener('click', (e) => {
-        if (e.target === editModal) {
-            closeModals();
-        }
-        if (e.target === filterModal) {
-            closeModals();
-        }
-        if (e.target === editMetaModal) {
-            closeModals();
-        }
-    });
-});
-
-// Navegar para uma página específica
-function navigateToPage(page) {
-    currentPage = page;
-    
-    // Atualizar título da página
-    const pageTitle = document.getElementById('pageTitle');
-    const contentTitle = document.getElementById('contentTitle');
-    const filterBadge = document.getElementById('filterBadge');
-    
-    switch (page) {
-        case 'porta-fora':
-            pageTitle.textContent = 'Painel Estratégico - Porta para fora';
-            contentTitle.textContent = 'Iniciativas - Porta para fora';
-            filterBadge.textContent = 'Porta para fora';
-            filterBadge.classList.add('active');
-            break;
-        case 'porta-dentro':
-            pageTitle.textContent = 'Painel Estratégico - Porta para dentro';
-            contentTitle.textContent = 'Iniciativas - Porta para dentro';
-            filterBadge.textContent = 'Porta para dentro';
-            filterBadge.classList.add('active');
-            break;
-        default:
-            pageTitle.textContent = 'Painel Estratégico';
-            contentTitle.textContent = 'Objetivos Estratégicos';
-            filterBadge.classList.remove('active');
-            break;
-    }
-    
-    // Carregar iniciativas filtradas
-    loadInitiatives();
-    updateStats();
+/* Base Styles */
+:root {
+  --primary-color: #00a884;
+  --primary-dark: #008f72;
+  --secondary-color: #4f46e5;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #3b82f6;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --white: #ffffff;
+  --black: #000000;
+  --border-radius: 0.375rem;
+  --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --transition: all 0.2s ease-in-out;
 }
 
-// Carregar iniciativas na lista
-function loadInitiatives(filteredList = null) {
-    const initiativesList = document.getElementById('initiativesList');
-    let list = filteredList || initiatives;
-    
-    // Filtrar por porta se necessário
-    if (currentPage === 'porta-fora') {
-        list = list.filter(initiative => initiative.Porta === 'Porta para fora');
-    } else if (currentPage === 'porta-dentro') {
-        list = list.filter(initiative => initiative.Porta === 'Porta para dentro');
-    }
-    
-    initiativesList.innerHTML = '';
-    
-    if (list.length === 0) {
-        initiativesList.innerHTML = '<div class="empty-state">Nenhuma iniciativa encontrada.</div>';
-        return;
-    }
-    
-    list.forEach(initiative => {
-        // Criar elemento de iniciativa
-        const initiativeElement = document.createElement('div');
-        initiativeElement.className = 'initiative-item';
-        
-        // Calcular progresso total baseado no progresso de cada meta
-        let totalProgresso = 0;
-        let metasCompletas = 0;
-        
-        if (initiative.Metas && initiative.Metas.length > 0) {
-            initiative.Metas.forEach(meta => {
-                totalProgresso += meta.progresso || 0;
-                if (meta.status === 'Concluído') {
-                    metasCompletas++;
-                }
-            });
-            
-            totalProgresso = Math.round(totalProgresso / initiative.Metas.length);
-        }
-        
-        // Criar cabeçalho da iniciativa
-        const headerElement = document.createElement('div');
-        headerElement.className = 'initiative-header';
-        headerElement.innerHTML = `
-            <div class="initiative-title">
-                <i class="fas fa-chevron-right"></i>
-                <h3>${initiative.Iniciativas}</h3>
-            </div>
-            <div class="initiative-actions">
-                <div class="initiative-progress">
-                    <span class="progress-text">${metasCompletas}/${initiative.Metas ? initiative.Metas.length : 0} metas</span>
-                    <div class="progress-bar">
-                        <div class="progress-value" style="width: ${totalProgresso}%; background-color: ${getProgressColor(initiative.FAROL_NO_TRIMESTRE)}"></div>
-                    </div>
-                </div>
-                <span class="status-badge ${getStatusClass(initiative.FAROL_NO_TRIMESTRE)}">
-                    ${getStatusIcon(initiative.FAROL_NO_TRIMESTRE)}
-                    ${initiative.FAROL_NO_TRIMESTRE || 'Não definido'}
-                </span>
-                <button class="edit-btn" data-initiative="${initiative.id}">
-                    <i class="fas fa-edit"></i>
-                </button>
-            </div>
-        `;
-        
-        initiativeElement.appendChild(headerElement);
-        
-        // Criar detalhes da iniciativa
-        const detailsElement = document.createElement('div');
-        detailsElement.className = 'initiative-details';
-        
-        // Descrição
-        let detailsContent = `
-            <p class="initiative-description">${initiative.Descrição || ''}</p>
-        `;
-        
-        // Resultados e Metas
-        if (initiative.Resultados && initiative.Resultados.length > 0) {
-            initiative.Resultados.forEach(resultado => {
-                detailsContent += `
-                    <div class="resultado-item">
-                        <div class="resultado-header">
-                            <i class="fas fa-bullseye"></i> Resultado: ${resultado.texto}
-                        </div>
-                        <div class="metas-container">
-                `;
-                
-                // Filtrar metas por resultado
-                const resultadoMetas = initiative.Metas.filter(meta => meta.resultadoId === resultado.id);
-                
-                if (resultadoMetas.length > 0) {
-                    resultadoMetas.forEach(meta => {
-                        detailsContent += `
-                            <div class="meta-item">
-                                <div class="meta-header">
-                                    <div class="meta-text">${meta.texto}</div>
-                                    <div class="meta-info">
-                                        <span class="meta-semestre">${meta.semestre}</span>
-                                        <span class="meta-status ${getMetaStatusClass(meta.status)}">
-                                            ${getStatusIcon(meta.status)}
-                                            ${meta.status}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="meta-progress">
-                                    <div class="meta-progress-value" style="width: ${meta.progresso}%; background-color: ${getProgressColor(meta.status)}"></div>
-                                </div>
-                                <div class="meta-actions">
-                                    <button class="btn btn-sm btn-outline edit-meta-btn" data-initiative="${initiative.id}" data-meta-index="${meta.id}">
-                                        <i class="fas fa-edit"></i> Editar Status
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                    });
-                } else {
-                    detailsContent += `<p class="empty-state">Nenhuma meta associada a este resultado.</p>`;
-                }
-                
-                detailsContent += `
-                        </div>
-                    </div>
-                `;
-            });
-        }
-        
-        // Metadados
-        detailsContent += `
-            <div class="details-meta">
-                <span>Líder:</span> ${initiative.LÍDER || 'Não definido'}
-            </div>
-            <div class="details-meta">
-                <span>Porta:</span> ${initiative.Porta || 'Não definido'}
-            </div>
-            ${initiative.OBSERVAÇÕES ? `
-            <div class="details-meta">
-                <span>Observações:</span> ${initiative.OBSERVAÇÕES}
-            </div>
-            ` : ''}
-        `;
-        
-        detailsElement.innerHTML = detailsContent;
-        initiativeElement.appendChild(detailsElement);
-        
-        initiativesList.appendChild(initiativeElement);
-        
-        // Adicionar event listeners
-        const header = initiativeElement.querySelector('.initiative-header');
-        header.addEventListener('click', () => {
-            const details = initiativeElement.querySelector('.initiative-details');
-            const chevron = initiativeElement.querySelector('.initiative-title i');
-            
-            details.classList.toggle('active');
-            
-            if (details.classList.contains('active')) {
-                chevron.classList.remove('fa-chevron-right');
-                chevron.classList.add('fa-chevron-down');
-            } else {
-                chevron.classList.remove('fa-chevron-down');
-                chevron.classList.add('fa-chevron-right');
-            }
-        });
-        
-        const editBtn = initiativeElement.querySelector('.edit-btn');
-        editBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const initiativeId = e.currentTarget.getAttribute('data-initiative');
-            openEditModal(initiativeId);
-        });
-        
-        // Adicionar event listeners para botões de edição de meta
-        const editMetaBtns = initiativeElement.querySelectorAll('.edit-meta-btn');
-        editMetaBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const initiativeId = e.currentTarget.getAttribute('data-initiative');
-                const metaId = e.currentTarget.getAttribute('data-meta-index');
-                openEditMetaModal(initiativeId, metaId);
-            });
-        });
-    });
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// Atualizar estatísticas
-function updateStats() {
-    let filteredInitiatives = [...initiatives];
-    
-    // Filtrar por porta se necessário
-    if (currentPage === 'porta-fora') {
-        filteredInitiatives = filteredInitiatives.filter(initiative => initiative.Porta === 'Porta para fora');
-    } else if (currentPage === 'porta-dentro') {
-        filteredInitiatives = filteredInitiatives.filter(initiative => initiative.Porta === 'Porta para dentro');
-    }
-    
-    const totalInitiatives = filteredInitiatives.length;
-    
-    let totalGoals = 0;
-    let completedGoals = 0;
-    let totalProgress = 0;
-    
-    filteredInitiatives.forEach(initiative => {
-        if (initiative.Metas && Array.isArray(initiative.Metas)) {
-            totalGoals += initiative.Metas.length;
-            
-            initiative.Metas.forEach(meta => {
-                totalProgress += meta.progresso || 0;
-                if (meta.status === 'Concluído') {
-                    completedGoals++;
-                }
-            });
-        }
-    });
-    
-    const completionPercentage = totalGoals > 0 
-        ? Math.round(totalProgress / totalGoals) 
-        : 0;
-    
-    document.getElementById('totalInitiatives').textContent = totalInitiatives;
-    document.getElementById('totalGoals').textContent = totalGoals;
-    document.getElementById('completedGoals').textContent = completedGoals;
-    document.getElementById('completionPercentage').textContent = `${completionPercentage}%`;
-    document.getElementById('overallProgress').style.width = `${completionPercentage}%`;
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray-800);
+  background-color: var(--gray-100);
 }
 
-// Funções auxiliares
-function getStatusClass(status) {
-    if (!status) return '';
-    
-    switch (status.toLowerCase()) {
-        case 'no prazo':
-            return 'no-prazo';
-        case 'em risco':
-            return 'em-risco';
-        case 'concluído':
-            return 'concluida';
-        case 'não iniciado':
-            return 'nao-iniciada';
-        case 'em andamento':
-            return 'em-andamento';
-        default:
-            return '';
-    }
+.container {
+  display: flex;
+  min-height: 100vh;
 }
 
-function getMetaStatusClass(status) {
-    if (!status) return '';
-    
-    switch (status.toLowerCase()) {
-        case 'não iniciado':
-            return 'nao-iniciada';
-        case 'em andamento':
-            return 'em-andamento';
-        case 'no prazo':
-            return 'no-prazo';
-        case 'em risco':
-            return 'em-risco';
-        case 'concluído':
-            return 'concluida';
-        default:
-            return '';
-    }
+/* Sidebar */
+#sidebar {
+  width: 280px;
+  background-color: var(--white);
+  border-right: 1px solid var(--gray-200);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  z-index: 10;
 }
 
-function getProgressColor(status) {
-    if (!status) return '#9ca3af';
-    
-    switch (status.toLowerCase()) {
-        case 'no prazo':
-            return '#10b981';
-        case 'em risco':
-            return '#ef4444';
-        case 'concluído':
-            return '#3b82f6';
-        case 'não iniciado':
-            return '#9ca3af';
-        case 'em andamento':
-            return '#f59e0b';
-        default:
-            return '#9ca3af';
-    }
+#sidebar.collapsed {
+  width: 80px;
 }
 
-function getStatusIcon(status) {
-    if (!status) return '';
-    
-    switch (status.toLowerCase()) {
-        case 'no prazo':
-            return '<i class="fas fa-check-circle"></i> ';
-        case 'em risco':
-            return '<i class="fas fa-exclamation-circle"></i> ';
-        case 'concluído':
-            return '<i class="fas fa-check-double"></i> ';
-        case 'não iniciado':
-            return '<i class="fas fa-clock"></i> ';
-        case 'em andamento':
-            return '<i class="fas fa-spinner"></i> ';
-        default:
-            return '';
-    }
+.sidebar-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-// Manipuladores de eventos
-function handleSearch() {
-    const searchInput = document.getElementById('searchInput');
-    const searchTerm = searchInput.value.toLowerCase();
-    
-    if (searchTerm === '') {
-        loadInitiatives();
-        return;
-    }
-    
-    const filteredInitiatives = initiatives.filter(initiative => 
-        initiative.Iniciativas.toLowerCase().includes(searchTerm) ||
-        (initiative.Descrição && initiative.Descrição.toLowerCase().includes(searchTerm))
-    );
-    
-    loadInitiatives(filteredInitiatives);
+.logo {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0.5rem;
 }
 
-function toggleExpandAll() {
-    const expandAllBtn = document.getElementById('expandAllBtn');
-    const detailsElements = document.querySelectorAll('.initiative-details');
-    const chevrons = document.querySelectorAll('.initiative-title i');
-    
-    allExpanded = !allExpanded;
-    
-    if (allExpanded) {
-        expandAllBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Recolher Todos';
-        detailsElements.forEach(el => el.classList.add('active'));
-        chevrons.forEach(icon => {
-            icon.classList.remove('fa-chevron-right');
-            icon.classList.add('fa-chevron-down');
-        });
-    } else {
-        expandAllBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Expandir Todos';
-        detailsElements.forEach(el => el.classList.remove('active'));
-        chevrons.forEach(icon => {
-            icon.classList.remove('fa-chevron-down');
-            icon.classList.add('fa-chevron-right');
-        });
-    }
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-function openEditModal(initiativeId) {
-    const editModal = document.getElementById('editModal');
-    currentInitiative = initiatives.find(i => i.id === initiativeId);
-    
-    if (!currentInitiative) return;
-    
-    // Preencher o formulário
-    document.getElementById('editNome').value = currentInitiative.Iniciativas;
-    document.getElementById('editDescricao').value = currentInitiative.Descrição || '';
-    document.getElementById('editPorta').value = currentInitiative.Porta || '';
-    document.getElementById('editFarol').value = currentInitiative.FAROL_NO_TRIMESTRE || '';
-    document.getElementById('editLider').value = currentInitiative.LÍDER || '';
-    document.getElementById('editObservacoes').value = currentInitiative.OBSERVAÇÕES || '';
-    
-    // Preencher resultados
-    resultadosList = [...(currentInitiative.Resultados || [])];
-    const resultadosContainer = document.getElementById('resultadosContainer');
-    resultadosContainer.innerHTML = '';
-    
-    resultadosList.forEach((resultado, index) => {
-        const resultadoRow = document.createElement('div');
-        resultadoRow.className = 'item-row';
-        resultadoRow.innerHTML = `
-            <input type="text" value="${resultado.texto}" readonly>
-            <button type="button" class="remove-item" data-index="${index}">
-                <i class="fas fa-times"></i>
-            </button>
-        `;
-        resultadosContainer.appendChild(resultadoRow);
-    });
-    
-    // Adicionar event listeners para remover resultados
-    document.querySelectorAll('#resultadosContainer .remove-item').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const index = parseInt(e.currentTarget.getAttribute('data-index'));
-            resultadosList.splice(index, 1);
-            e.currentTarget.parentElement.remove();
-            updateRemoveButtons('#resultadosContainer');
-        });
-    });
-    
-    // Preencher metas
-    metasList = [...(currentInitiative.Metas || [])];
-    const metasContainer = document.getElementById('metasContainer');
-    metasContainer.innerHTML = '';
-    
-    metasList.forEach((meta, index) => {
-        const metaRow = document.createElement('div');
-        metaRow.className = 'item-row';
-        metaRow.innerHTML = `
-            <input type="text" value="${meta.texto}" readonly>
-            <span class="meta-semestre">${meta.semestre}</span>
-            <button type="button" class="remove-item" data-index="${index}">
-                <i class="fas fa-times"></i>
-            </button>
-        `;
-        metasContainer.appendChild(metaRow);
-    });
-    
-    // Adicionar event listeners para remover metas
-    document.querySelectorAll('#metasContainer .remove-item').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const index = parseInt(e.currentTarget.getAttribute('data-index'));
-            metasList.splice(index, 1);
-            e.currentTarget.parentElement.remove();
-            updateRemoveButtons('#metasContainer');
-        });
-    });
-    
-    // Preencher dropdown de resultados para novas metas
-    const newMetaResultado = document.getElementById('newMetaResultado');
-    newMetaResultado.innerHTML = '';
-    resultadosList.forEach(resultado => {
-        const option = document.createElement('option');
-        option.value = resultado.id;
-        option.textContent = resultado.texto.substring(0, 50) + (resultado.texto.length > 50 ? '...' : '');
-        newMetaResultado.appendChild(option);
-    });
-    
-    editModal.style.display = 'block';
+.sidebar-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
 }
 
-function openEditMetaModal(initiativeId, metaId) {
-    const editMetaModal = document.getElementById('editMetaModal');
-    currentInitiative = initiatives.find(i => i.id === initiativeId);
-    
-    if (!currentInitiative || !currentInitiative.Metas) return;
-    
-    const meta = currentInitiative.Metas.find(m => m.id === metaId);
-    if (!meta) return;
-    
-    currentMetaIndex = metaId;
-    
-    // Preencher o formulário
-    document.getElementById('metaText').value = meta.
+.sidebar-header p {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  text-align: center;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+}
+
+.nav-item {
+  margin-bottom: 0.5rem;
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: var(--gray-700);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.nav-item a:hover {
+  background-color: var(--gray-100);
+  color: var(--primary-color);
+}
+
+.nav-item.active a {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.nav-item i {
+  margin-right: 0.75rem;
+  width: 1.25rem;
+  text-align: center;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Main Content */
+#mainContent {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  transition: var(--transition);
+}
+
+#mainContent.expanded {
+  margin-left: 80px;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#pageTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.filter-badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.badge.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 0.625rem 1rem 0.625rem 2.5rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 168, 132, 0.2);
+}
+
+.search-container i {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-500);
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  box-shadow: var(--box-shadow);
+}
+
+.stat-title {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  height: 0.5rem;
+  background-color: var(--gray-200);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-value {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+/* Hierarchy Diagram */
+.hierarchy-diagram {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 1.25rem;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 1.5rem;
+}
+
+.hierarchy-diagram h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--gray-700);
+}
+
+.diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.diagram-level {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.diagram-box {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  text-align: center;
+  min-width: 150px;
+}
+
+.level-1 {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.level-2 {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+.level-3 {
+  background-color: var(--info-color);
+  color: var(--white);
+}
+
+.diagram-arrow {
+  color: var(--gray-400);
+  font-size: 1.25rem;
+}
+
+/* Content Section */
+.content-section {
+  margin-bottom: 2rem;
+}
+
+#contentTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--gray-800);
+}
+
+.initiatives-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.initiative-item {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+}
+
+.initiative-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.initiative-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.initiative-title h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.initiative-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.initiative-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 150px;
+}
+
+.progress-text {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.status-badge.no-prazo {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.status-badge.em-risco {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+}
+
+.status-badge.em-andamento {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning-color);
+}
+
+.status-badge.concluida {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--info-color);
+}
+
+.status-badge.nao-iniciada {
+  background-color: rgba(107, 114, 128, 0.1);
+  color: var(--gray-500);
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.edit-btn:hover {
+  color: var(--primary-color);
+}
+
+.initiative-details {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.initiative-details.active {
+  padding: 1rem;
+  max-height: 2000px;
+}
+
+.initiative-description {
+  margin-bottom: 1rem;
+  color: var(--gray-600);
+  font-size: 0.875rem;
+}
+
+.details-section {
+  margin-bottom: 1.5rem;
+}
+
+.details-section h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gray-700);
+}
+
+.details-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.details-list li {
+  padding-left: 1rem;
+  border-left: 2px solid var(--gray-300);
+}
+
+.resultado-item {
+  background-color: var(--gray-50);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.resultado-header {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--gray-700);
+}
+
+.meta-item {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  border: 1px solid var(--gray-200);
+}
+
+.meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.meta-text {
+  font-size: 0.875rem;
+  color: var(--gray-800);
+  flex: 1;
+}
+
+.meta-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.meta-semestre {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  white-space: nowrap;
+}
+
+.meta-status {
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.meta-status.no-prazo {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.meta-status.em-risco {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+}
+
+.meta-status.concluida {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--info-color);
+}
+
+.meta-status.nao-iniciada {
+  background-color: rgba(107, 114, 128, 0.1);
+  color: var(--gray-500);
+}
+
+.meta-progress {
+  height: 0.375rem;
+  background-color: var(--gray-200);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.meta-progress-value {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.meta-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.details-meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  margin-bottom: 0.5rem;
+}
+
+.details-meta span {
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--gray-300);
+  color: var(--gray-700);
+}
+
+.btn-outline:hover {
+  background-color: var(--gray-100);
+  border-color: var(--gray-400);
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.btn-icon {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-icon:hover {
+  background-color: var(--gray-100);
+  color: var(--primary-color);
+}
+
+/* Modals */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background-color: var(--white);
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 600px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.close-modal {
+  font-size: 1.5rem;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.close-modal:hover {
+  color: var(--danger-color);
+}
+
+.modal-body {
+  padding: 1rem;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.625rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 168, 132, 0.2);
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.form-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--gray-700);
+}
+
+.items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius);
+  background-color: var(--gray-50);
+}
+
+.item-row input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.item-row .meta-semestre {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  white-space: nowrap;
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.remove-item:hover {
+  color: var(--danger-color);
+}
+
+.add-item-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.add-item-form input,
+.add-item-form select {
+  padding: 0.5rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+}
+
+.add-item-form input {
+  flex: 1;
+}
+
+.add-item-form select {
+  min-width: 150px;
+}
+
+/* Filter Section */
+.filter-section {
+  margin-bottom: 1.5rem;
+}
+
+.filter-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--gray-700);
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.5rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+}
+
+.checkbox-item label {
+  font-size: 0.875rem;
+  color: var(--gray-700);
+  cursor: pointer;
+}
+
+/* Empty State */
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: var(--gray-500);
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  border: 1px dashed var(--gray-300);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .sidebar-header {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0;
+  }
+
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-right {
+    width: 100%;
+  }
+
+  .search-container {
+    width: 100%;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .meta-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .meta-info {
+    align-items: flex-start;
+  }
+
+  .add-item-form {
+    flex-direction: column;
+  }
+}
+
