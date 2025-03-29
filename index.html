@@ -25,59 +25,44 @@
             </div>
             
             <nav class="sidebar-nav">
-                <ul>
-                    <li>
-                        <a href="index.html" class="active">
-                            <i class="fas fa-home"></i>
-                            <span>Início</span>
-                        </a>
-                    </li>
-                    <li class="menu-dropdown">
+                <div class="nav-items">
+                    <div class="menu-dropdown">
                         <a href="#" class="dropdown-toggle">
-                            <i class="fas fa-chart-line"></i>
                             <span>Painel da Estratégia</span>
                             <i class="fas fa-chevron-down dropdown-icon"></i>
                         </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="#" data-page="porta-fora" class="submenu-item">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    <span>Porta para fora</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-page="porta-dentro" class="submenu-item">
-                                    <i class="fas fa-door-open"></i>
-                                    <span>Porta para dentro</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-exchange-alt"></i>
-                            <span>Teoria da Mudança NCPI</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-users-cog"></i>
-                            <span>Governança</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-tasks"></i>
-                            <span>Sistemática de Monitoramento e Avaliação</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-file-alt"></i>
-                            <span>Relatórios de Avaliação NCPI</span>
-                        </a>
-                    </li>
-                </ul>
+                        <div class="submenu">
+                            <a href="#" class="submenu-item" data-page="porta-fora">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Porta para fora</span>
+                            </a>
+                            <a href="#" class="submenu-item" data-page="porta-dentro">
+                                <i class="fas fa-internal-link"></i>
+                                <span>Porta para dentro</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="nav-item" data-page="teoria-mudanca">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Teoria da Mudança NCPI</span>
+                    </a>
+                    
+                    <a href="#" class="nav-item" data-page="governanca">
+                        <i class="fas fa-users"></i>
+                        <span>Governança</span>
+                    </a>
+                    
+                    <a href="#" class="nav-item" data-page="sistematica">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Sistemática de Monitoramento e Avaliação</span>
+                    </a>
+                    
+                    <a href="#" class="nav-item" data-page="relatorios">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Relatórios de Avaliação NCPI</span>
+                    </a>
+                </div>
             </nav>
         </aside>
 
@@ -86,135 +71,632 @@
             <header class="header">
                 <div class="header-content">
                     <div class="header-title">
-                        <h1 id="pageTitle">Painel Estratégico</h1>
+                        <h1 id="pageTitle">Teoria da Mudança NCPI</h1>
                         <p>Plano Fase 5 | 2025 - 2027</p>
-                    </div>
-                    <div class="header-actions">
-                        <button class="btn btn-outline" id="exportBtn">
-                            <i class="fas fa-download"></i> Exportar
-                        </button>
                     </div>
                 </div>
             </header>
 
-            <div class="hierarchy-diagram">
-                <div class="hierarchy-title">
-                    <h2>Estrutura Hierárquica</h2>
-                    <p>Visualização da lógica de implementação</p>
-                </div>
-                <div class="hierarchy-steps">
-                    <div class="hierarchy-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Iniciativas</h3>
-                            <p>Ações estratégicas para alcançar os objetivos</p>
-                        </div>
-                    </div>
-                    <div class="hierarchy-arrow">
-                        <i class="fas fa-long-arrow-alt-right"></i>
-                    </div>
-                    <div class="hierarchy-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Resultados</h3>
-                            <p>Efeitos esperados das iniciativas</p>
-                        </div>
-                    </div>
-                    <div class="hierarchy-arrow">
-                        <i class="fas fa-long-arrow-alt-right"></i>
-                    </div>
-                    <div class="hierarchy-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Metas</h3>
-                            <p>Objetivos mensuráveis e com prazo definido</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="teoria-mudanca" class="content-wrapper" style="display: none;">
+                <div class="content-container">
+                    <div class="teoria-mudanca">
+                        <div class="teoria-mudanca-grid">
+                            <!-- Impacto Section -->
+                            <div class="section">
+                                <div class="section-label">Impacto</div>
+                                <div class="section-content">
+                                    <div class="box">
+                                        <p>Primeira infância priorizada nas políticas públicas</p>
+                                        <div class="ods-icons">
+                                            <img src="assets/ods/ods3.png" alt="ODS 3">
+                                            <img src="assets/ods/ods4.png" alt="ODS 4">
+                                            <img src="assets/ods/ods10.png" alt="ODS 10">
+                                        </div>
+                                        <div class="arrow-down">↓</div>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-content">
-                        <div>
-                            <p class="stat-label">Iniciativas</p>
-                            <h2 class="stat-value" id="totalInitiatives">0</h2>
-                            <p class="stat-desc">Total de iniciativas ativas</p>
-                        </div>
-                        <div class="stat-icon blue">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                    </div>
-                </div>
+                            <!-- Efeitos Secundários Section -->
+                            <div class="section">
+                                <div class="section-label">Efeitos Secundários</div>
+                                <div class="section-content">
+                                    <div class="box">
+                                        <p>Ampliação do financiamento público para primeira infância</p>
+                                        <div class="arrow-down">↓</div>
+                                    </div>
+                                    <div class="box">
+                                        <p>Fortalecimento da governança intersetorial</p>
+                                        <div class="arrow-down">↓</div>
+                                    </div>
+                                    <div class="box">
+                                        <p>Qualificação dos serviços e programas</p>
+                                        <div class="arrow-down">↓</div>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="stat-card">
-                    <div class="stat-content">
-                        <div>
-                            <p class="stat-label">Metas</p>
-                            <h2 class="stat-value" id="totalGoals">0</h2>
-                            <p class="stat-desc">Metas estabelecidas</p>
-                        </div>
-                        <div class="stat-icon purple">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                    </div>
-                </div>
+                            <!-- Efeitos Primários Section -->
+                            <div class="section">
+                                <div class="section-label">Efeitos Primários</div>
+                                <div class="section-content">
+                                    <div class="box">
+                                        <p>Ampliação da visibilidade e do conhecimento sobre primeira infância</p>
+                                        <div class="arrow-down">↓</div>
+                                    </div>
+                                    <div class="box">
+                                        <p>Fortalecimento da capacidade técnica e operacional</p>
+                                        <div class="arrow-down">↓</div>
+                                    </div>
+                                    <div class="box">
+                                        <p>Fortalecimento da articulação e mobilização</p>
+                                        <div class="arrow-down">↓</div>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="stat-card">
-                    <div class="stat-content">
-                        <div>
-                            <p class="stat-label">Concluídas</p>
-                            <h2 class="stat-value" id="completedGoals">0</h2>
-                            <p class="stat-desc">Metas concluídas</p>
-                        </div>
-                        <div class="stat-icon green">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                    </div>
-                </div>
+                            <!-- Iniciativas Section -->
+                            <div class="section">
+                                <div class="section-label">Iniciativas</div>
+                                <div class="section-content">
+                                    <div class="box initiative">
+                                        <p>Porta para Fora</p>
+                                        <small>Advocacy e comunicação</small>
+                                    </div>
+                                    <div class="box initiative">
+                                        <p>Porta para Dentro</p>
+                                        <small>Fortalecimento institucional</small>
+                                    </div>
+                                    <div class="box initiative">
+                                        <p>Gestão do Conhecimento</p>
+                                        <small>Produção e disseminação</small>
+                                    </div>
+                                    <div class="box initiative">
+                                        <p>Articulação e Mobilização</p>
+                                        <small>Redes e parcerias</small>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="stat-card">
-                    <div class="stat-content">
-                        <div>
-                            <p class="stat-label">Progresso</p>
-                            <h2 class="stat-value" id="completionPercentage">0%</h2>
-                            <p class="stat-desc">Média de conclusão</p>
-                        </div>
-                        <div class="stat-icon pink">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <!-- Agendas Transversais Section -->
+                            <div class="section">
+                                <div class="section-label">Agendas Transversais</div>
+                                <div class="section-content">
+                                    <div class="agenda-item">
+                                        <p>Equidade racial</p>
+                                    </div>
+                                    <div class="agenda-item">
+                                        <p>Primeira infância Yanomami</p>
+                                    </div>
+                                    <div class="agenda-item">
+                                        <p>Mudanças climáticas</p>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="content-container">
-                <div class="content-header">
-                    <h2 id="contentTitle">Objetivos Estratégicos</h2>
-                    <div class="filter-badge" id="filterBadge"></div>
-                </div>
-                
-                <div class="actions-bar">
-                    <div class="search-container">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="searchInput" placeholder="Buscar iniciativas..." class="search-input">
+                            <!-- Estratégias Section -->
+                            <div class="section">
+                                <div class="section-label">Estratégias</div>
+                                <div class="section-content">
+                                    <div class="estrategia-box green">
+                                        <p>Fortalecimento da capacidade técnica e operacional dos atores</p>
+                                    </div>
+                                    <div class="estrategia-box blue">
+                                        <p>Produção e disseminação de conhecimento</p>
+                                    </div>
+                                    <div class="estrategia-box purple">
+                                        <p>Articulação e mobilização de atores estratégicos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="action-buttons">
-                        <button class="btn btn-outline" id="filterBtn">
-                            <i class="fas fa-filter"></i> Filtrar Status
+                    <!-- Pressupostos Section -->
+                    <div class="pressupostos-section">
+                        <h2>Pressupostos</h2>
+                        <div class="pressupostos-grid">
+                            <div class="pressuposto-item">
+                                <div class="pressuposto-header">
+                                    <h3>Desenvolvimento integral da criança</h3>
+                                </div>
+                                <div class="pressuposto-content">
+                                    <p>A primeira infância é um período crucial para o desenvolvimento cerebral e o bem-estar físico e emocional da criança, impactando toda a sua vida futura. Estudos científicos indicam que experiências nessa fase influenciam o sucesso escolar e social, a saúde e o comportamento na vida adulta.</p>
+                                </div>
+                            </div>
+
+                            <div class="pressuposto-item">
+                                <div class="pressuposto-header">
+                                    <h3>Promoção e defesa dos direitos da criança</h3>
+                                </div>
+                                <div class="pressuposto-content">
+                                    <p>O Marco Legal da Primeira Infância reitera que a infância deve ser prioridade absoluta na formulação de políticas públicas. O Estado, a sociedade e a família têm o dever de garantir a plena proteção e desenvolvimento da criança. O processo de formulação da Política Nacional Integrada da Primeira Infância é um evento de elevado potencial transformador e que merece atenção nos próximos anos.</p>
+                                </div>
+                            </div>
+
+                            <div class="pressuposto-item">
+                                <div class="pressuposto-header">
+                                    <h3>Redução de desigualdades sociais</h3>
+                                </div>
+                                <div class="pressuposto-content">
+                                    <p>Investir na primeira infância, especialmente em crianças de famílias em situação de vulnerabilidade social, é uma estratégia comprovada para interromper ciclos intergeracionais de pobreza e desigualdade, além de trazer retornos econômicos significativos para a sociedade.</p>
+                                </div>
+                            </div>
+
+                            <div class="pressuposto-item">
+                                <div class="pressuposto-header">
+                                    <h3>Intersetorialidade</h3>
+                                </div>
+                                <div class="pressuposto-content">
+                                    <p>Para garantir o pleno desenvolvimento infantil, é necessário integrar diferentes áreas de atuação, como saúde, educação, assistência social e justiça. A intersetorialidade facilita a coordenação de políticas e serviços voltados para a primeira infância, assegurando um atendimento mais completo e eficaz.</p>
+                                </div>
+                            </div>
+
+                            <div class="pressuposto-item">
+                                <div class="pressuposto-header">
+                                    <h3>Agenda 2030</h3>
+                                </div>
+                                <div class="pressuposto-content">
+                                    <p>O Brasil é signatário da Agenda 2030 da ONU, que prevê, entre outros objetivos, o desenvolvimento pleno de todas as crianças, assegurando acesso à educação e cuidados na primeira infância como uma estratégia essencial para o desenvolvimento sustentável.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="governanca" class="content-wrapper" style="display: none;">
+                <div class="content-container">
+                    <div class="content-header">
+                        <h2>Governança</h2>
+                    </div>
+                    <div class="governanca-content">
+                        <!-- Estrutura Organizacional -->
+                        <section class="org-structure">
+                            <div class="org-header">
+                                <h3>ESTRUTURA ORGANIZACIONAL DA FASE V</h3>
+                            </div>
+                            <div class="org-description">
+                                <p>A governança do NCPI tem evoluído de fase à fase. A evolução foi determinada pela entrada e saída de parceiros, por mudanças na organização backbone e por necessidades de melhorar os fluxos decisórios e operacionais.</p>
+                                <p>Para a Fase V, busca-se evoluir na governança de modo a tornar mais nítidos os espaços decisórios, diferenciando-os de espaços consultivos e assessores.</p>
+                                <p>Busca-se evoluir também ao reconhecer o papel estrutural que o Comitê Científico desempenha do NCPI, como guardião do rigor científico que caracteriza a iniciativa desde sua gênese. A instância deixa de ser vista como iniciativa finalística, para ser compreendida como instância de orientação técnico-científica em temas centrais à produção do NCPI.</p>
+                            </div>
+
+                            <div class="org-diagram">
+                                <img src="assets/images/ncpi-org-diagram.png" alt="Diagrama Organizacional NCPI">
+                            </div>
+
+                            <!-- Tabela de Comitês -->
+                            <div class="committees-table">
+                                <div class="committee-row">
+                                    <div class="committee-header">COMITÊ GESTOR</div>
+                                    <div class="committee-header">COMITÊ ESTRATÉGICO</div>
+                                    <div class="committee-header">COMITÊ CIENTÍFICO</div>
+                                    <div class="committee-header">EQUIPE EXECUTIVA</div>
+                                </div>
+                                
+                                <div class="committee-content">
+                                    <div class="committee-column">
+                                        <ul>
+                                            <li>organização backbone e parceiros financiadores</li>
+                                            <li>instância decisória sobre temas de investimento, eficiência de recursos, posicionamento público, harmonização das agendas com os financiadores, mobilização de recursos e impacto</li>
+                                            <li>reuniões quinzenais conduzidas pela equipe executiva</li>
+                                            <li>reuniões ad-hoc entre diretoras da FMCSV e FVL</li>
+                                        </ul>
+                                    </div>
+                                    <div class="committee-column">
+                                        <ul>
+                                            <li>todos os parceiros da coalizão somados a 3 a 4 agentes-chave para a agenda de implementação de PPPI</li>
+                                            <li>instância consultiva de análise estratégica voltada a temas de ideação, articulação e sinergia</li>
+                                            <li>reuniões trimestrais conduzidas pela liderança executiva do NCPI</li>
+                                        </ul>
+                                    </div>
+                                    <div class="committee-column">
+                                        <ul>
+                                            <li>cientistas de diferentes áreas de conhecimento, regiões e origens étnico-raciais</li>
+                                            <li>instância de orientação técnico-científica para produção e curadoria de evidências para o diálogo público sobre políticas públicas para as Primeiras Infâncias</li>
+                                            <li>reuniões trimestrais e coordenação rotativa e mandato definidos em regulamento aprovado pelo Comitê Gestor</li>
+                                        </ul>
+                                    </div>
+                                    <div class="committee-column">
+                                        <ul>
+                                            <li>colaboradores contratados pela Backbone, com autonomia para a contratação de fornecedores</li>
+                                            <li>instância executiva coordenada pela liderança executiva do NCPI e subordinada à organização backbone</li>
+                                            <li>a definir</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Responsabilidades da Equipe -->
+                        <section class="responsibilities-section">
+                            <h3>RESPONSABILIDADES DA EQUIPE EXECUTIVA</h3>
+                            
+                            <div class="resp-grid">
+                                <div class="resp-column">
+                                    <h4>SUPORTE À GESTÃO</h4>
+                                    <ol>
+                                        <li>Analisar os relatórios financeiros mensais</li>
+                                        <li>Participar das reuniões da área de PP da FMCSV</li>
+                                        <li>Participar da reunião mensal da equipe da FMCSV</li>
+                                        <li>Preparar os Progress Reports para a VL</li>
+                                        <li>Consolidar o status trimestral do plano estratégico</li>
+                                        <li>Fazer a gestão do planejamento dos projetos</li>
+                                        <li>Apoiar a captação de recursos para projetos</li>
+                                    </ol>
+                                </div>
+
+                                <div class="resp-column">
+                                    <h4>SUPORTE À GOVERNANÇA</h4>
+                                    <ol>
+                                        <li>Cuidar do fluxo de documentos entre as instâncias</li>
+                                        <li>Preparar agendas para as reuniões periódicas</li>
+                                        <li>Pactuar o calendário e convocar todos os encontros</li>
+                                        <li>Realizar as reuniões do Comitê Científico</li>
+                                        <li>Acompanhar as produções do Comitê Científico</li>
+                                        <li>Orientar a agenda prioritária do Comitê Científico</li>
+                                        <li>Dar suporte aos porta-vozes do Comitê Científico</li>
+                                        <li>Articular a participação consultiva dos parceiros estratégicos</li>
+                                        <li>Participar em eventos do ecossistema de PI</li>
+                                        <li>Preparar e circular registros e atas de decisões</li>
+                                        <li>Preparar lançamentos dos produtos do Comitê Científico</li>
+                                        <li>Apoiar a formação continuada dos pesquisadores em temas prioritários</li>
+                                        <li>Participar do Comitê Científico em eventos estratégicos</li>
+                                        <li>Potencializar os porta-vozes do Comitê Científico</li>
+                                        <li>Apoiar a governança do Comitê Científico</li>
+                                        <li>Participar do Comitê Científico na co-construção e evento do Prêmio</li>
+                                        <li>Participar do Comitê Científico na co-construção e evento do Simpósio</li>
+                                        <li>Participar do Comitê Científico nos encontros da Comunidade NCPI</li>
+                                    </ol>
+                                </div>
+
+                                <div class="resp-column">
+                                    <h4>NCPI DISSEMINA</h4>
+                                    <ol>
+                                        <li>Produzir Manual de redação e tom de voz</li>
+                                        <li>Produzir a newsletter quinzenal</li>
+                                        <li>Produzir e revisar conteúdos para redes sociais (semanal)</li>
+                                        <li>Apoiar a produção de conteúdo e materiais para Comitê Científico (WP e outros)</li>
+                                        <li>Produzir materiais institucionais (PPTs, cards, boletins)</li>
+                                        <li>Gerir os fornecedores de texto, design e vídeo</li>
+                                        <li>Definir estratégias e acompanhamento de ações para incidência na imprensa</li>
+                                        <li>Produzir de briefing, acompanhamento e revisão de produtos de comunicação</li>
+                                        <li>Participar em reuniões da estratégia de comunicação da backbone</li>
+                                        <li>Fazer a manutenção e atualização de site institucional (mensal)</li>
+                                        <li>Articular com jornalistas e editores</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <!-- ELP, PRÊMIO, SIMPÓSIO Section -->
+                            <div class="resp-grid">
+                                <div class="resp-column">
+                                    <h4>ELP</h4>
+                                    <ol>
+                                        <li>Apoiar o TH na gestão de fornecedores (hotel, alimentação, transporte, materiais, etc)</li>
+                                        <li>Apoiar a compra de passagens aéreas pela agência de viagens</li>
+                                        <li>Preparar os materiais de comunicação: inscrição, carta convite, brochura, etc.</li>
+                                        <li>Apoiar e monitorar o processo de visto para participantes</li>
+                                        <li>Definir os participantes com o Comitê Gestor</li>
+                                        <li>Alinhar o desenho pedagógico com TH (Módulo I e metodologia de Plano de Ação, professores, agenda presencial, facilitadores e Módulo II)</li>
+                                        <li>Fazer a análise de compliance dos participantes com o Comitê Gestor</li>
+                                        <li>Realizar os convites e fazer o follow up de todos os participantes</li>
+                                        <li>Mapear o perfil e interesses dos convidados e alinhar com o TH</li>
+                                        <li>Sugestão de Grupos para os planos</li>
+                                        <li>Gestão de Tempos e Movimentos durante a realização do Módulo em Harvard</li>
+                                        <li>Definir as responsabilidades do TH, DRCLAS, NCPI e Parceiros na semana presencial</li>
+                                        <li>Dar suporte aos participantes e assessores (antes e durante)</li>
+                                        <li>Fazer a gestão da comunicação com participantes (e-mail e whatsapp)</li>
+                                        <li>Coordenar a pauta das reuniões de logística com harvard</li>
+                                        <li>Criação, Envio e Análise da Avaliação</li>
+                                        <li>Acompanhamento junto aos facilitadores do desenvolvimento dos planos</li>
+                                        <li>Contratação de Logística no Brasil (Hotel, alimentação, equipamentos...)</li>
+                                        <li>Definição e convite dos palestrantes módulo III</li>
+                                    </ol>
+                                </div>
+
+                                <div class="resp-column">
+                                    <h4>PRÊMIO</h4>
+                                    <ol>
+                                        <li>Construir parcerias com organizações de apoio para divulgação e capilaridade</li>
+                                        <li>Definir os temas prioritários</li>
+                                        <li>Mapear de pesquisadores de PI NNE</li>
+                                        <li>Construir e validar o edital</li>
+                                        <li>Elaborar planos de formação em disseminação científica</li>
+                                        <li>Preparar os participantes para o evento</li>
+                                        <li>Elaborar planos de formação em diálogo com gestão pública</li>
+                                        <li>Cuidar da logística do evento presencial</li>
+                                        <li>Zelar pela jornada de disseminação das pesquisas (infográficos)</li>
+                                        <li>Assegurar o Júri e avaliações de trabalhos inscritos</li>
+                                        <li>Zelar pela logística do repasse financeiro</li>
+                                        <li>Participar em Encontros Comunidade NCPI</li>
+                                        <li>Validar o ranking pelas instâncias gestoras</li>
+                                        <li>Contratar o parceiro operador</li>
+                                        <li>Participar no Simpósio</li>
+                                        <li>Contratar parceiro da execução do evento</li>
+                                        <li>Contratar de equipe de audiovisual</li>
+                                        <li>Consolidar o relatório do Prêmio</li>
+                                    </ol>
+                                </div>
+
+                                <div class="resp-column">
+                                    <h4>SIMPÓSIO</h4>
+                                    <ol>
+                                        <li>Planejar o Simpósio com os parceiros estratégicos</li>
+                                        <li>Definir os convidados internacionais</li>
+                                        <li>Fazer e acompanhar os convites internacionais</li>
+                                        <li>Fechar a agenda</li>
+                                        <li>Contratar o produtor</li>
+                                        <li>Contratar as agências</li>
+                                        <li>Selecionar e definir data e espaço</li>
+                                        <li>Zelar pela logística do evento presencial</li>
+                                        <li>Cuidar das inscrições e seleção do público</li>
+                                        <li>Fazer e acompanhar os convites a parceiros estratégicos</li>
+                                        <li>Desenhar o encontro da Comunidade NCPI</li>
+                                        <li>Articular os side events: chamadas, espaços, tempos, etc.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Estrutura da Equipe -->
+                        <section class="team-structure">
+                            <h3>ESTRUTURA DA EQUIPE EXECUTIVA</h3>
+                            <div class="team-description">
+                                <p>A equipe executiva tem demonstrado grande capacidade realizadora e compromisso com o lugar do NCPI no ecossistema.</p>
+                                <p>Ao longo da Fase IV a equipe passou por mudanças significativas, com a saída de duas pessoas importantes para os relacionamentos e operações.</p>
+                                <p>Os ajustes realizados pela Backbone neste processo foram cruciais para manter o tônus e a capacidade de entrega da equipe.</p>
+                                <p>Ao mesmo tempo, a equipe executiva também passou a operar novas iniciativas e relações de parceria executiva, com a Escola de Saúde Pública de Harvard, com a Ponte a Ponte, e com a agência de comunicação.</p>
+                                <p>A estrutura atual pode ser revisada para a Fase V</p>
+                            </div>
+                            <div class="team-diagram">
+                                <div class="backbone-section">
+                                    <h4>Backbone</h4>
+                                    <div class="team-meetings">
+                                        <div class="meeting-circle">
+                                            <p>Reunião ad hoc com Diretora Programas</p>
+                                        </div>
+                                        <div class="meeting-circle">
+                                            <p>Reunião geral mensal equipe Backbone</p>
+                                        </div>
+                                        <div class="meeting-circle">
+                                            <p>Reunião quinzenal Área PP Backbone</p>
+                                        </div>
+                                        <div class="meeting-circle">
+                                            <p>Reunião Área Sensibilização Backbone</p>
+                                        </div>
+                                    </div>
+                                    <div class="connector-line vertical"></div>
+                                </div>
+                                <div class="team-core">
+                                    <div class="team-box">
+                                        <h5>Time NCPI dedicado</h5>
+                                        <p>Coordenação + 3 analistas</p>
+                                    </div>
+                                    <div class="connector-line vertical"></div>
+                                    <div class="support-section">
+                                        <p>suporte</p>
+                                        <div class="support-boxes">
+                                            <div class="support-box">
+                                                <p>Núcleo ELP</p>
+                                                <small>(analistas + consultoria)</small>
+                                            </div>
+                                            <div class="support-box">
+                                                <p>Núcleo Prêmio</p>
+                                                <small>(analistas + consultoria)</small>
+                                            </div>
+                                            <div class="support-box">
+                                                <p>Núcleo Simpósio</p>
+                                                <small>(analistas + consultoria)</small>
+                                            </div>
+                                            <div class="support-box">
+                                                <p>Núcleo Dissemina</p>
+                                                <small>(analistas + consultoria)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="connector-line vertical"></div>
+                                </div>
+                                <div class="committee-meetings">
+                                    <div class="meeting-circle">
+                                        <p>Reunião semanal com Comitê Gestor</p>
+                                    </div>
+                                    <div class="meeting-circle">
+                                        <p>Reuniões de equipe ad-hoc</p>
+                                    </div>
+                                    <div class="meeting-circle">
+                                        <p>Reunião Comitê Estratégico</p>
+                                    </div>
+                                    <div class="meeting-circle">
+                                        <p>Reunião Comitê Científico</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sistematica" class="content-wrapper" style="display: none;">
+                <div class="content-container">
+                    <div class="content-header">
+                        <h2>Sistemática de Monitoramento e Avaliação</h2>
+                    </div>
+                    <div class="sistematica-content">
+                        <div class="monitoring-table">
+                            <div class="monitoring-row">
+                                <div class="monitoring-header">REUNIÕES BIMENSAIS DA EQUIPE EXECUTIVA</div>
+                                <div class="monitoring-content">Acompanhamento das metas e atualização do farol</div>
+                            </div>
+                            <div class="monitoring-row">
+                                <div class="monitoring-header">REUNIÕES PERIÓDICAS DO COMITÊ GESTOR</div>
+                                <div class="monitoring-content">Apresentação e análise do farol</div>
+                            </div>
+                            <div class="monitoring-row">
+                                <div class="monitoring-header">ATUALIZAÇÃO DAS METAS 2026</div>
+                                <div class="monitoring-content">Avaliação interna anual, extração de aprendizagens e calibração de metas e prioridades para o ano seguinte</div>
+                            </div>
+                            <div class="monitoring-row">
+                                <div class="monitoring-header">ATUALIZAÇÃO DAS METAS 2027</div>
+                                <div class="monitoring-content">Avaliação interna anual, extração de aprendizagens e calibração de metas e prioridades para o ano seguinte</div>
+                            </div>
+                            <div class="monitoring-row">
+                                <div class="monitoring-header">AVALIAÇÃO DA FASE 5</div>
+                                <div class="monitoring-content">Avaliação externa da Fase 5 entre junho e outubro de 2027, para planejamento entre nov-dez</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="relatorios" class="content-wrapper" style="display: none;">
+                <div class="content-container">
+                    <div class="content-header">
+                        <h2>Relatórios de Avaliação NCPI</h2>
+                    </div>
+                    <div class="relatorios-content">
+                        <div class="relatorios-grid">
+                            <a href="#" class="relatorio-button">
+                                <div class="relatorio-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="relatorio-info">
+                                    <h3>Avaliação 2021</h3>
+                                    <p>Relatório de avaliação do período 2021</p>
+                                </div>
+                            </a>
+                            <a href="#" class="relatorio-button">
+                                <div class="relatorio-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="relatorio-info">
+                                    <h3>Avaliação 2024</h3>
+                                    <p>Relatório de avaliação do período 2024</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Sections -->
+            <div id="porta-fora" class="content-wrapper dashboard-container" style="display: none;">
+                <div class="dashboard-header">
+                    <div class="search-filter-container">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Buscar iniciativas...">
+                        <button id="filterBtn" class="btn btn-outline">
+                            <i class="fas fa-filter"></i>
+                            Filtros
                         </button>
-                        <button class="btn btn-outline" id="expandAllBtn">
-                            <i class="fas fa-chevron-down"></i> Expandir Todos
+                    </div>
+                    <div class="actions-container">
+                        <button id="expandAllBtn" class="btn btn-outline">
+                            <i class="fas fa-chevron-down"></i>
+                            Expandir Todos
                         </button>
-                        <button class="btn btn-outline" id="exportDataBtn">
-                            <i class="fas fa-download"></i> Exportar
+                        <button id="exportBtn" class="btn btn-outline">
+                            <i class="fas fa-download"></i>
+                            Exportar
                         </button>
                     </div>
                 </div>
 
-                <div id="initiativesList" class="initiatives-list">
-                    <!-- Iniciativas serão carregadas dinamicamente aqui -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total de Iniciativas</h3>
+                        <div class="value" id="totalInitiatives">0</div>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>5% desde o último mês</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total de Metas</h3>
+                        <div class="value" id="totalGoals">0</div>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>3% desde o último mês</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Metas Concluídas</h3>
+                        <div class="value" id="completedGoals">0</div>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>8% desde o último mês</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Progresso Geral</h3>
+                        <div class="value" id="completionPercentage">0%</div>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>2% desde o último mês</span>
+                        </div>
+                    </div>
                 </div>
+
+                <div id="initiativesList"></div>
+            </div>
+
+            <div id="porta-dentro" class="content-wrapper dashboard-container" style="display: none;">
+                <div class="dashboard-header">
+                    <div class="search-filter-container">
+                        <input type="text" id="searchInputInterno" class="search-input" placeholder="Buscar iniciativas internas...">
+                        <button id="filterBtnInterno" class="btn btn-outline">
+                            <i class="fas fa-filter"></i>
+                            Filtros
+                        </button>
+                    </div>
+                    <div class="actions-container">
+                        <button id="expandAllBtnInterno" class="btn btn-outline">
+                            <i class="fas fa-chevron-down"></i>
+                            Expandir Todos
+                        </button>
+                        <button id="exportBtnInterno" class="btn btn-outline">
+                            <i class="fas fa-download"></i>
+                            Exportar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total de Iniciativas Internas</h3>
+                        <div class="value" id="totalInitiativesInterno">0</div>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>4% desde o último mês</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total de Metas Internas</h3>
+                        <div class="value" id="totalGoalsInterno">0</div>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>6% desde o último mês</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Metas Internas Concluídas</h3>
+                        <div class="value" id="completedGoalsInterno">0</div>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>7% desde o último mês</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Progresso Geral Interno</h3>
+                        <div class="value" id="completionPercentageInterno">0%</div>
+                        <div class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>3% desde o último mês</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="initiativesListInterno"></div>
             </div>
         </main>
     </div>
@@ -224,162 +706,118 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Editar Iniciativa</h2>
-                <span class="close-modal">&times;</span>
+                <button class="close-modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="editForm">
-                    <div class="form-group">
-                        <label for="editNome">Nome</label>
-                        <input type="text" id="editNome" name="Iniciativas" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="editDescricao">Descrição</label>
-                        <textarea id="editDescricao" name="Descrição" rows="3"></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="editPorta">Porta</label>
-                        <select id="editPorta" name="Porta">
-                            <option value="">Selecione a porta</option>
-                            <option value="Porta para fora">Porta para fora</option>
-                            <option value="Porta para dentro">Porta para dentro</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="editFarol">Farol no Trimestre</label>
-                        <select id="editFarol" name="FAROL_NO_TRIMESTRE">
-                            <option value="">Selecione o status</option>
-                            <option value="Em Andamento">Em Andamento</option>
-                            <option value="No Prazo">No Prazo</option>
-                            <option value="Em Risco">Em Risco</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="editLider">Líder</label>
-                        <input type="text" id="editLider" name="LÍDER">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Resultados</label>
-                        <div id="resultadosContainer" class="items-container">
-                            <!-- Resultados serão adicionados aqui -->
-                        </div>
-                        <div class="add-item-container">
-                            <input type="text" id="newResultado" placeholder="Adicionar novo resultado">
-                            <button type="button" id="addResultadoBtn" class="btn">Adicionar</button>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Metas</label>
-                        <div id="metasContainer" class="items-container">
-                            <!-- Metas serão adicionadas aqui -->
-                        </div>
-                        <div class="add-item-container">
-                            <input type="text" id="newMeta" placeholder="Adicionar nova meta">
-                            <select id="newMetaSemestre">
-                                <option value="1º Semestre 2025">1º Semestre 2025</option>
-                                <option value="2º Semestre 2025">2º Semestre 2025</option>
-                                <option value="1º Semestre 2026">1º Semestre 2026</option>
-                                <option value="2º Semestre 2026">2º Semestre 2026</option>
-                                <option value="1º Semestre 2027">1º Semestre 2027</option>
-                                <option value="2º Semestre 2027">2º Semestre 2027</option>
-                            </select>
-                            <button type="button" id="addMetaBtn" class="btn">Adicionar</button>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="editObservacoes">Observações</label>
-                        <textarea id="editObservacoes" name="OBSERVAÇÕES" rows="3"></textarea>
-                    </div>
-                </form>
+                <div class="form-group">
+                    <label for="editNome">Nome da Iniciativa</label>
+                    <input type="text" id="editNome" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="editDescricao">Descrição</label>
+                    <textarea id="editDescricao" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editPorta">Porta</label>
+                    <select id="editPorta" class="form-control">
+                        <option value="Porta para fora">Porta para fora</option>
+                        <option value="Porta para dentro">Porta para dentro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editFarol">Status</label>
+                    <select id="editFarol" class="form-control">
+                        <option value="Em andamento">Em andamento</option>
+                        <option value="No prazo">No prazo</option>
+                        <option value="Em risco">Em risco</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editLider">Líder</label>
+                    <input type="text" id="editLider" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="editObservacoes">Observações</label>
+                    <textarea id="editObservacoes" class="form-control"></textarea>
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline" id="cancelEditBtn">Cancelar</button>
-                <button class="btn btn-primary" id="saveEditBtn">Salvar Alterações</button>
+                <button id="cancelEditBtn" class="btn btn-outline">Cancelar</button>
+                <button id="saveEditBtn" class="btn btn-primary">Salvar</button>
             </div>
         </div>
     </div>
 
     <!-- Modal de Edição de Meta -->
     <div id="editMetaModal" class="modal">
-        <div class="modal-content modal-sm">
+        <div class="modal-content">
             <div class="modal-header">
-                <h2>Editar Status da Meta</h2>
-                <span class="close-modal">&times;</span>
+                <h2>Editar Meta</h2>
+                <button class="close-modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="editMetaForm">
-                    <div class="form-group">
-                        <label for="metaText">Meta</label>
-                        <textarea id="metaText" rows="3" readonly></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="metaSemestre">Semestre</label>
-                        <select id="metaSemestre">
-                            <option value="1º Semestre 2025">1º Semestre 2025</option>
-                            <option value="2º Semestre 2025">2º Semestre 2025</option>
-                            <option value="1º Semestre 2026">1º Semestre 2026</option>
-                            <option value="2º Semestre 2026">2º Semestre 2026</option>
-                            <option value="1º Semestre 2027">1º Semestre 2027</option>
-                            <option value="2º Semestre 2027">2º Semestre 2027</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="metaStatus">Status</label>
-                        <select id="metaStatus">
-                            <option value="Não iniciada">Não iniciada</option>
-                            <option value="Em andamento">Em andamento</option>
-                            <option value="Concluída">Concluída</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="metaProgresso">Progresso (%)</label>
-                        <input type="range" id="metaProgresso" min="0" max="100" step="5" value="0">
-                        <div class="range-value"><span id="progressoValue">0</span>%</div>
-                    </div>
-                </form>
+                <div class="form-group">
+                    <label for="metaText">Meta</label>
+                    <input type="text" id="metaText" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="metaSemestre">Semestre</label>
+                    <select id="metaSemestre" class="form-control">
+                        <option value="1º Semestre 2024">1º Semestre 2024</option>
+                        <option value="2º Semestre 2024">2º Semestre 2024</option>
+                        <option value="1º Semestre 2025">1º Semestre 2025</option>
+                        <option value="2º Semestre 2025">2º Semestre 2025</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="metaStatus">Status</label>
+                    <select id="metaStatus" class="form-control">
+                        <option value="Não iniciada">Não iniciada</option>
+                        <option value="Em andamento">Em andamento</option>
+                        <option value="Concluída">Concluída</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="metaProgresso">Progresso <span id="progressoValue">0</span>%</label>
+                    <input type="range" id="metaProgresso" class="form-control" min="0" max="100" step="5">
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline" id="cancelMetaEditBtn">Cancelar</button>
-                <button class="btn btn-primary" id="saveMetaEditBtn">Salvar</button>
+                <button id="cancelMetaEditBtn" class="btn btn-outline">Cancelar</button>
+                <button id="saveMetaEditBtn" class="btn btn-primary">Salvar</button>
             </div>
         </div>
     </div>
 
     <!-- Filtro Modal -->
     <div id="filterModal" class="modal">
-        <div class="modal-content modal-sm">
+        <div class="modal-content">
             <div class="modal-header">
-                <h2>Filtrar por Status</h2>
-                <span class="close-modal">&times;</span>
+                <h2>Filtros</h2>
+                <button class="close-modal">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="filter-options">
-                    <label class="filter-option">
-                        <input type="checkbox" value="all" checked> Todos
-                    </label>
-                    <label class="filter-option">
-                        <input type="checkbox" value="Em Andamento"> Em Andamento
-                    </label>
-                    <label class="filter-option">
-                        <input type="checkbox" value="No Prazo"> No Prazo
-                    </label>
-                    <label class="filter-option">
-                        <input type="checkbox" value="Em Risco"> Em Risco
-                    </label>
+                <div class="filter-group">
+                    <label>Status</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" value="all" checked> Todos
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Em andamento"> Em andamento
+                        </label>
+                        <label>
+                            <input type="checkbox" value="No prazo"> No prazo
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Em risco"> Em risco
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline" id="cancelFilterBtn">Cancelar</button>
-                <button class="btn btn-primary" id="applyFilterBtn">Aplicar</button>
+                <button id="cancelFilterBtn" class="btn btn-outline">Cancelar</button>
+                <button id="applyFilterBtn" class="btn btn-primary">Aplicar</button>
             </div>
         </div>
     </div>
